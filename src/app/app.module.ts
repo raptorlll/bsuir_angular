@@ -1,19 +1,35 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { MainComponent } from './main/main.component';
-import {RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegistrationComponent } from './auth/registration/registration.component';
 import { GuestNavbarComponent } from './navbars/guest-navbar/guest-navbar.component';
 import { AuthNavbarComponent } from './navbars/auth-navbar/auth-navbar.component';
-
+import { SharedModule } from './shared/shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GuestGuard } from './shared/guards/guest-guard.service';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
-  { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'registration', component: RegistrationComponent },
-  { path: '**', component: PageNotFoundComponent }
+  {
+    path: '',
+    component: LoginComponent
+  },
+  {
+    path: 'login',
+    canActivate: [GuestGuard],
+    component: LoginComponent
+  },
+  {
+    path: 'registration',
+    canActivate: [GuestGuard],
+    component: RegistrationComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
 ]);
 
 @NgModule({
@@ -29,7 +45,9 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   ],
   imports: [
     rootRouting,
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [MainComponent]
