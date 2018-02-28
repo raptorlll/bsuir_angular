@@ -10,6 +10,7 @@ import { AuthNavbarComponent } from './navbars/auth-navbar/auth-navbar.component
 import { SharedModule } from './shared/shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GuestGuard } from './shared/guards/guest-guard.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   {
@@ -47,6 +48,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     rootRouting,
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule
   ],
   providers: [],
