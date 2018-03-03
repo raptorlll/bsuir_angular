@@ -6,6 +6,7 @@ import { TokenStoreService } from '../services/token-store.service';
 import { AuthGuard } from '../guards/auth-guard.service';
 import { GuestGuard } from '../guards/guest-guard.service';
 import {APIS} from '../api/api/api';
+import { ApiCommunicationService } from '../api-services/api-communication.service';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import {APIS} from '../api/api/api';
     CurrentUserService,
     TokenStoreService,
     AuthGuard,
-    GuestGuard
+    GuestGuard,
+    ApiCommunicationService
   ]
 })
 export class SharedModule { }

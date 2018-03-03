@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GuestGuard } from './shared/guards/guest-guard.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   {
@@ -50,6 +51,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     SharedModule
   ],
   providers: [],

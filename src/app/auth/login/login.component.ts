@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { ApiCommunicationService } from '../../shared/api-services/api-communication.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private apiCommunicationService: ApiCommunicationService
   ) { }
 
   ngOnInit() {
@@ -32,6 +34,11 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    
+    this.apiCommunicationService
+      .login(this.loginForm.value.login, this.loginForm.value.password)
+      .subscribe((data: any) => {
+        console.log(data);
+      })
+      ;
   }
 }
