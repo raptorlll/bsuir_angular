@@ -242,7 +242,7 @@ export class CustomerInformationControllerService {
             'application/json'
         ];
 
-        return this.httpClient.put<any>(`${this.basePath}/customer_information/${encodeURIComponent(String(id))}`,
+        return this.httpClient.put<any>(`${this.basePath}/customer_information/${encodeURIComponent(String(1))}`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,

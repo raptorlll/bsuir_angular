@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
-const serverPath = 'http://ec2-184-73-70-178.compute-1.amazonaws.com';
+const serverPath = environment.api_location;
 
 enum ROUTE_PATH {
   LOGIN = '/oauth/token'
@@ -24,7 +25,7 @@ export class ApiCommunicationService {
     headers = headers.set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Authorization', 'Basic ' + btoa('testjwtclientid' + ':' + 'XY7kmzoNzl100'));
 
-    return this.http.post(serverPath + ROUTE_PATH.LOGIN, body, { headers })
+    return this.http.post(serverPath + "ROUTE_PATH.LOGIN", body, { headers })
       .map((res: any)  => res.json())
       .map((res: any) => {
         console.log('DONE');

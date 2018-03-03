@@ -5,21 +5,27 @@ import { CurrentUserService } from '../services/current-user.service';
 import { TokenStoreService } from '../services/token-store.service';
 import { AuthGuard } from '../guards/auth-guard.service';
 import { GuestGuard } from '../guards/guest-guard.service';
-import {APIS} from '../api/api/api';
+import {ApiModule} from '../api/generated';
+import {BASE_PATH} from '../api/generated/variables';
 import { ApiCommunicationService } from '../api-services/api-communication.service';
+import { environment } from '../../../environments/environment';
+
+
+export const BasePathEnv = { provide: BASE_PATH, useValue: environment.api_location };
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule
   ],
-  exports: [
+  exports: [ 
     MaterialModule
   ],
   declarations: [
   ],
   providers: [
-    ...APIS,
+    BasePathEnv,
+    ApiModule,
     CurrentUserService,
     TokenStoreService,
     AuthGuard,
