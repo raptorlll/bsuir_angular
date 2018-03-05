@@ -1,15 +1,14 @@
 <mat-toolbar color="primary">
-    <button routerLink="login" mat-button>
-      Login
-    </button>
-    <button routerLink="registration" mat-button>
-      Registration
-    </button>
-    <button routerLink="" mat-button>
-      News
-    </button>
-    <button (click)="logout()" mat-button>
-      Logout
-    </button>
-  </mat-toolbar>
-  
+  <button routerLink="/" mat-button>
+    Home
+  </button>
+  <button 
+    [routerLink]="menuItem.route[0]" 
+    *ngFor="let menuItem of menuItems" 
+    mat-button>
+    {{menuItem.name}}
+  </button>
+  <button (click)="logout()" mat-button>
+    Logout
+  </button>
+</mat-toolbar>

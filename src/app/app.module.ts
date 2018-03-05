@@ -1,3 +1,4 @@
+import { RoutingModule } from './routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { MainComponent } from './main/main.component';
@@ -15,28 +16,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import 'rxjs/Rx';
 import { HomeComponent } from './home/home.component';
-
-const rootRouting: ModuleWithProviders = RouterModule.forRoot([
-  {
-    path: '',
-    component: HomeComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'login',
-    canActivate: [GuestGuard],
-    component: LoginComponent
-  },
-  {
-    path: 'registration',
-    canActivate: [GuestGuard],
-    component: RegistrationComponent
-  },
-  {
-    path: '**',
-    component: PageNotFoundComponent
-  }
-]);
+import {TokenInterceptor} from './shared/interceptor/token-interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ConsultantModule } from './consultant/consultant.module';
 
 @NgModule({
   declarations: [
@@ -51,15 +33,23 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     HomeComponent
   ],
   imports: [
-    rootRouting,
+    RoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+
+    ConsultantModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [MainComponent]
 })
 export class AppModule { }

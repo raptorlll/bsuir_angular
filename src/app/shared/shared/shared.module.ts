@@ -10,6 +10,7 @@ import {BASE_PATH} from '../api/generated/variables';
 import { ApiCommunicationService } from '../api-services/api-communication.service';
 import { environment } from '../../../environments/environment';
 import {ConvertorsModule} from '../convertors/convertors.module'
+import { NavbarService } from '../services/navbar.service';
 
 export const BasePathEnv = { provide: BASE_PATH, useValue: environment.api_location };
 
@@ -31,7 +32,8 @@ export const BasePathEnv = { provide: BASE_PATH, useValue: environment.api_locat
     TokenStoreService,
     AuthGuard,
     GuestGuard,
-    ApiCommunicationService
+    ApiCommunicationService,
+    NavbarService
   ]
 })
 export class SharedModule { }
