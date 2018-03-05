@@ -2,6 +2,7 @@ import {forwardRef, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import { InformationComponent } from './information/information.component';
 import { ConsultantRoutingModule } from './consultant-routing.module';
+import { ListComponent } from './list/list.component';
 
 @NgModule({
     imports: [
@@ -9,7 +10,8 @@ import { ConsultantRoutingModule } from './consultant-routing.module';
         ConsultantRoutingModule
     ],
     declarations: [
-        InformationComponent
+        InformationComponent,
+        ListComponent
     ],
     providers: [
     ]

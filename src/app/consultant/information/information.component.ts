@@ -10,18 +10,10 @@ import { ConsultantInfomationConvertorService } from '../../shared/convertors/co
 export class InformationComponent implements OnInit {
 
   constructor(
-    private dataService: ConsultantInformationControllerService,
-    private convertorService: ConsultantInfomationConvertorService
-
   ) { }
 
   ngOnInit() {
-    this.dataService
-      .getItemsUsingGET2()
-      .map((a: Array<any>)=>a.map((a)=>this.convertorService.convertFromSwagger(a)))
-      .subscribe((a)=>{
-        console.log("converted",a);
-      })
+    
   }
 
 }
