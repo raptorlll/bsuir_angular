@@ -10,14 +10,17 @@ import { AuthNavbarComponent } from './navbars/auth-navbar/auth-navbar.component
 import { SharedModule } from './shared/shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GuestGuard } from './shared/guards/guest-guard.service';
+import { AuthGuard } from './shared/guards/auth-guard.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import 'rxjs/Rx';
+import { HomeComponent } from './home/home.component';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   {
     path: '',
-    component: LoginComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'login',
@@ -44,7 +47,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
 
     /* Navigation bar parts */
     GuestNavbarComponent,
-    AuthNavbarComponent
+    AuthNavbarComponent,
+    HomeComponent
   ],
   imports: [
     rootRouting,

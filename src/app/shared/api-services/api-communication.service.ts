@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { UserControllerService } from '../api/generated';
 import { User } from '../models/user.model';
 import { UserJsonConvertorService } from '../convertors/user-json-convertor.service';
+import { TokenStoreService } from '../services/token-store.service';
+import { TokenKeys } from '../enums/token-keys.enum';
 
 const serverPath = environment.api_location;
 
@@ -19,34 +21,27 @@ export class ApiCommunicationService {
   constructor(
     private http: HttpClient,
     private userControllerService: UserControllerService,
-    private userJsonConvertorService: UserJsonConvertorService
+    private userJsonConvertorService: UserJsonConvertorService,
+    private tokenStoreService: TokenStoreService
   ) { }
 
-  login(username: string, password: string) {
+  login(username: string, password: string): Observable<any> {
     const body = `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&grant_type=password`;
-
-    // const headers = {
-    //  'Content-Type': 'application/x-www-form-urlencoded',
-    //  'Authorization': 'Basic ' + btoa('testjwtclientid' + ':' + 'XY7kmzoNzl100')
-    // };
 
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Authorization', 'Basic ' + btoa('testjwtclientid' + ':' + 'XY7kmzoNzl100'));
 
     return (<Observable<any>>this.http.post(serverPath + ROUTE_PATH.LOGIN, body, { headers }))
-      .map((res: any)  => res.json())
+      // .map((res: any)  => res.json())
       .map((res: any) => {
-        console.log('DONE');
-        if (res.access_token) {
-          return res.access_token;
-        }
-        return null;
+        console.log('DONE', res);
+        this.tokenStoreService.setItem(TokenKeys.USER_KEY, res.access_token);
+        return res;
       });
   }
 
-  registration(user: User){
-  
+  registration(user: User): Observable<any> {
     return this.userControllerService.registerUserAccountUsingPOST(this.userJsonConvertorService.convertToSwagger(user));
   }
 }

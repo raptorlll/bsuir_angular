@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ApiCommunicationService } from '../../shared/api-services/api-communication.service';
+import { Router } from '@angular/router';
+import { CurrentUserService } from '../../shared/services/current-user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +13,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
+    private currentUserService: CurrentUserService,
     private apiCommunicationService: ApiCommunicationService
   ) { }
 
@@ -37,8 +41,8 @@ export class LoginComponent implements OnInit {
     this.apiCommunicationService
       .login(this.loginForm.value.login, this.loginForm.value.password)
       .subscribe((data: any) => {
-        console.log(data);
-      })
-      ;
+        this.currentUserService.reloadUserEvent.next();
+        this.router.navigate(['']);
+      });
   }
 }

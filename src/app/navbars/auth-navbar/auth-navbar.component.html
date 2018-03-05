@@ -1,3 +1,15 @@
-<p>
-  auth-navbar works!
-</p>
+<mat-toolbar color="primary">
+    <button routerLink="login" mat-button>
+      Login
+    </button>
+    <button routerLink="registration" mat-button>
+      Registration
+    </button>
+    <button routerLink="" mat-button>
+      News
+    </button>
+    <button (click)="logout()" mat-button>
+      Logout
+    </button>
+  </mat-toolbar>
+  

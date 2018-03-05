@@ -16,4 +16,8 @@ export class TokenStoreService {
   setItem(key: TokenKeys, value: any): void {
     localStorage.setItem(key as string, JSON.stringify(value));
   }
+
+  removeItem(key: TokenKeys): any {
+    localStorage.removeItem(key as string);
+  }
 }
