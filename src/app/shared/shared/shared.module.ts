@@ -9,14 +9,16 @@ import {ApiModule} from '../api/generated';
 import {BASE_PATH} from '../api/generated/variables';
 import { ApiCommunicationService } from '../api-services/api-communication.service';
 import { environment } from '../../../environments/environment';
-
+import {ConvertorsModule} from '../convertors/convertors.module'
 
 export const BasePathEnv = { provide: BASE_PATH, useValue: environment.api_location };
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    ConvertorsModule,
+    ApiModule
   ],
   exports: [ 
     MaterialModule
@@ -25,7 +27,6 @@ export const BasePathEnv = { provide: BASE_PATH, useValue: environment.api_locat
   ],
   providers: [
     BasePathEnv,
-    ApiModule,
     CurrentUserService,
     TokenStoreService,
     AuthGuard,
