@@ -11,6 +11,8 @@ import { ApiCommunicationService } from '../api-services/api-communication.servi
 import { environment } from '../../../environments/environment';
 import {ConvertorsModule} from '../convertors/convertors.module'
 import { NavbarService } from '../services/navbar.service';
+import { ConsultantInformationService } from '../api-services/consultant-information.service';
+import { CrudModule } from '../components/crud/crud.module';
 
 export const BasePathEnv = { provide: BASE_PATH, useValue: environment.api_location };
 
@@ -19,10 +21,12 @@ export const BasePathEnv = { provide: BASE_PATH, useValue: environment.api_locat
     CommonModule,
     MaterialModule,
     ConvertorsModule,
-    ApiModule
+    ApiModule,
+    CrudModule
   ],
-  exports: [ 
-    MaterialModule
+  exports: [
+    MaterialModule,
+    CrudModule
   ],
   declarations: [
   ],
@@ -33,6 +37,7 @@ export const BasePathEnv = { provide: BASE_PATH, useValue: environment.api_locat
     AuthGuard,
     GuestGuard,
     ApiCommunicationService,
+    ConsultantInformationService,
     NavbarService
   ]
 })
