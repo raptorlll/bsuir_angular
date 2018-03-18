@@ -1,5 +1,4 @@
 <app-guest-navbar *ngIf="!isAuthorised"></app-guest-navbar>
 <app-auth-navbar *ngIf="isAuthorised"></app-auth-navbar>
-<div class="block-center">
-  <router-outlet></router-outlet>
-</div>
+
+<router-outlet></router-outlet>

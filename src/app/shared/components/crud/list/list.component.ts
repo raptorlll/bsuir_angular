@@ -5,7 +5,22 @@ import { ConsultantInformation } from '../../../models';
 @Component({
   selector: 'app-crud-list',
   templateUrl: './list.component.html',
-  styles: []
+  styles: [`
+    .crud-item{
+      padding: 5px;
+    }
+    .list-item-buttons {
+      min-width: 100px;
+      width: 20%;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .list-item-content {
+      width: 79%;
+      display: inline-block;
+      vertical-align: top;
+    }
+  `]
 })
 export class ListComponent implements OnInit {
 

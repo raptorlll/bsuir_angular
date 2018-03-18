@@ -13,6 +13,7 @@ import {ConvertorsModule} from '../convertors/convertors.module'
 import { NavbarService } from '../services/navbar.service';
 import { ConsultantInformationService } from '../api-services/consultant-information.service';
 import { CrudModule } from '../components/crud/crud.module';
+import {CrudViewService} from '../services/crud-view.service';
 
 export const BasePathEnv = { provide: BASE_PATH, useValue: environment.api_location };
 
@@ -33,6 +34,7 @@ export const BasePathEnv = { provide: BASE_PATH, useValue: environment.api_locat
   providers: [
     BasePathEnv,
     CurrentUserService,
+    CrudViewService,
     TokenStoreService,
     AuthGuard,
     GuestGuard,

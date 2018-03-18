@@ -1,17 +1,28 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, ViewContainerRef, ViewChild, AfterContentInit} from '@angular/core';
+import {CrudViewService} from '../../../services/crud-view.service';
+import {CrudViewProviderService} from '../../../services/crud-view-provider.service';
 
 @Component({
   selector: 'list-crud-item',
   templateUrl: './list-item.component.html',
   styles: []
 })
-export class ListItemComponent implements OnInit {
-  @Input()
-  item: any;
+export class ListItemComponent<T> implements OnInit, AfterContentInit {
+  @Input() item: T;
+  @ViewChild('container', {read: ViewContainerRef}) container;
 
-  constructor() { }
+  constructor(private crudViewService: CrudViewService,
+              private crudViewProviderService: CrudViewProviderService<T>) {
+  }
 
   ngOnInit() {
+  }
+
+  ngAfterContentInit(): void {
+    this.crudViewService.loadComponentView(
+      this.container,
+      this.crudViewProviderService.getListItemComponent(),
+      this.item);
   }
 
 }

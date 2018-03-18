@@ -1,6 +1,6 @@
-<div>
-  <div *ngFor="let item of items">
-    <list-crud-item [item]="item"></list-crud-item>
-    <hr>
+<div class="crud-items-list">
+  <div class="crud-item" *ngFor="let item of items">
+    <list-crud-item class="list-item-content" [item]="item"></list-crud-item>
+    <crud-list-item-buttons class="list-item-buttons" [item]="item"></crud-list-item-buttons>
   </div>
 </div>
