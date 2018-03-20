@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GenericCrudService} from '../../../api-services/generic-crud.service';
+import {GenericCrudService} from '../../../api/api-services/generic-crud.service';
 import {ConsultantInformation} from '../../../models';
 
 @Component({

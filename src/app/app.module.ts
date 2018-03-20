@@ -19,6 +19,8 @@ import {HomeComponent} from './home/home.component';
 import {TokenInterceptor} from './shared/interceptor/token-interceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ConsultantModule} from './consultant/consultant.module';
+import {PreloaderComponent} from './shared/components/general/preloader.component';
+import { NotificationComponent } from './shared/components/general/notification.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {ConsultantModule} from './consultant/consultant.module';
     /* Navigation bar parts */
     GuestNavbarComponent,
     AuthNavbarComponent,
-    HomeComponent
+    HomeComponent,
+    PreloaderComponent,
+    NotificationComponent
   ],
   imports: [
     RoutingModule,

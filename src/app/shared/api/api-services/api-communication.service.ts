@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 import {Observable} from 'rxjs/Observable';
-import {UserControllerService} from '../api/generated';
-import {User} from '../models/user.model';
-import {UserJsonConvertorService} from '../convertors/user-json-convertor.service';
-import {TokenStoreService} from '../services/token-store.service';
-import {TokenKeys} from '../enums/token-keys.enum';
+import {UserControllerService} from '../generated/index';
+import {User} from '../../models/user.model';
+import {UserJsonConvertorService} from '../../convertors/user-json-convertor.service';
+import {TokenStoreService} from '../../services/token-store.service';
+import {TokenKeys} from '../../enums/token-keys.enum';
 
 const serverPath = environment.api_location;
 

@@ -1,8 +1,8 @@
 import {Component, OnInit, forwardRef} from '@angular/core';
 import {ConsultantInformationControllerService} from '../../../shared/api/generated/index';
 import {ConsultantInfomationConvertorService} from '../../../shared/convertors/consultant-information-convertor.service';
-import {GenericCrudService} from '../../../shared/api-services/generic-crud.service';
-import {ConsultantInformationService} from '../../../shared/api-services/consultant-information.service';
+import {GenericCrudService} from '../../../shared/api/api-services/generic-crud.service';
+import {ConsultantInformationService} from '../../../shared/api/api-services/consultant-information.service';
 import {ConsultantViewProviderService} from '../../services/consultant-view-provider.service';
 import {CrudViewProviderService} from '../../../shared/services/crud-view-provider.service';
 

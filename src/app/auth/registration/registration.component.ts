@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ApiCommunicationService} from '../../shared/api-services/api-communication.service';
+import {ApiCommunicationService} from '../../shared/api/api-services/api-communication.service';
 import {userRolesList} from '../../shared/predefined-lists';
 import {Role, User} from '../../shared/models';
 import * as _ from 'lodash';

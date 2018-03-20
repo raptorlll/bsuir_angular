@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators, FormGroup} from '@angular/forms';
-import {ApiCommunicationService} from '../../shared/api-services/api-communication.service';
+import {ApiCommunicationService} from '../../shared/api/api-services/api-communication.service';
 import {Router} from '@angular/router';
 import {CurrentUserService} from '../../shared/services/current-user.service';
 
