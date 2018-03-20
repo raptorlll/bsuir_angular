@@ -7,7 +7,7 @@ import {ConsultantInformation} from '../../shared/models';
 @Injectable()
 export class ConsultantViewProviderService extends CrudViewProviderService<ConsultantInformation> {
 
-  getListItemComponent(){
+  getListItemComponent() {
     return ListItemComponent;
   }
 }

@@ -9,14 +9,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Conversation } from './conversation';
-import { ConversationStatus } from './conversationStatus';
-import { Timestamp } from './timestamp';
+import {Conversation} from './conversation';
+import {ConversationStatus} from './conversationStatus';
+import {Timestamp} from './timestamp';
 
 
-export interface ConversationStatusHistory { 
-    conversation?: Conversation;
-    conversationStatuses?: ConversationStatus;
-    dateTime?: Timestamp;
-    id?: number;
+export interface ConversationStatusHistory {
+  conversation?: Conversation;
+  conversationStatuses?: ConversationStatus;
+  dateTime?: Timestamp;
+  id?: number;
 }

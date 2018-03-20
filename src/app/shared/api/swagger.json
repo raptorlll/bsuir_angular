@@ -1,1 +1,4207 @@
-{"swagger":"2.0","info":{"description":"Spring Boot REST API for Online Store","version":"1.0","title":"Spring Boot REST API","termsOfService":"Terms of service","contact":{"name":"Pavel Leonov","email":"leonpolq@gmail.com"},"license":{"name":"Apache License Version 2.0","url":"https://www.apache.org/licenses/LICENSE-2.0"}},"host":"localhost:8086","basePath":"/","tags":[{"name":"conversation-controller","description":"Conversation Controller"},{"name":"consultant-information-controller","description":"Consultant Information Controller"},{"name":"conversation-message-controller","description":"Conversation Message Controller"},{"name":"customer-information-controller","description":"Customer Information Controller"},{"name":"user-controller","description":"Operations with users"},{"name":"assets-controller","description":"Assets Controller"},{"name":"customer-payment-controller","description":"Customer Payment Controller"},{"name":"consultant-group-controller","description":"Consultant Group Controller"},{"name":"conversation-status-controller","description":"Conversation Status Controller"},{"name":"summary-payments-controller","description":"Summary Payments Controller"},{"name":"consultant-group-user-controller","description":"Consultant Group User Controller"},{"name":"resource-controller","description":"Resource Controller"}],"paths":{"/assets/download/{id}":{"get":{"tags":["assets-controller"],"summary":"downloadImage","operationId":"downloadImageUsingGET","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"type":"array","items":{"type":"string","format":"byte"}}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/assets/{id}":{"get":{"tags":["assets-controller"],"summary":"showImage","operationId":"showImageUsingGET","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"type":"array","items":{"type":"string","format":"byte"}}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/consultant_group":{"get":{"tags":["consultant-group-controller"],"summary":"getItems","operationId":"getItemsUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«ConsultantGroup»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"post":{"tags":["consultant-group-controller"],"summary":"Save availabe items","operationId":"saveItemUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/ConsultantGroup"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConsultantGroup"}},"201":{"description":"Successfully saved","schema":{"$ref":"#/definitions/ConsultantGroup"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/consultant_group/{id}":{"get":{"tags":["consultant-group-controller"],"summary":"getItem","operationId":"getItemUsingGET","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConsultantGroup"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"put":{"tags":["consultant-group-controller"],"summary":"updateItem","operationId":"updateItemUsingPUT","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"},{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/ConsultantGroup"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConsultantGroup"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"delete":{"tags":["consultant-group-controller"],"summary":"deleteItem","operationId":"deleteItemUsingDELETE","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseEntity«ConsultantGroup»"}},"401":{"description":"Unauthorized"},"204":{"description":"No Content"},"403":{"description":"Forbidden"}}}},"/consultant_group_user":{"get":{"tags":["consultant-group-user-controller"],"summary":"getItems","operationId":"getItemsUsingGET_1","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«ConsultantGroupUser»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"post":{"tags":["consultant-group-user-controller"],"summary":"Save availabe items","operationId":"saveItemUsingPOST_1","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/ConsultantGroupUser"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConsultantGroupUser"}},"201":{"description":"Successfully saved","schema":{"$ref":"#/definitions/ConsultantGroupUser"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/consultant_group_user/{id}":{"get":{"tags":["consultant-group-user-controller"],"summary":"getItem","operationId":"getItemUsingGET_1","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConsultantGroupUser"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"put":{"tags":["consultant-group-user-controller"],"summary":"updateItem","operationId":"updateItemUsingPUT_1","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"},{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/ConsultantGroupUser"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConsultantGroupUser"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"delete":{"tags":["consultant-group-user-controller"],"summary":"deleteItem","operationId":"deleteItemUsingDELETE_1","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseEntity«ConsultantGroupUser»"}},"401":{"description":"Unauthorized"},"204":{"description":"No Content"},"403":{"description":"Forbidden"}}}},"/consultant_information":{"get":{"tags":["consultant-information-controller"],"summary":"getItems","operationId":"getItemsUsingGET_2","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«ConsultantInformation»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"post":{"tags":["consultant-information-controller"],"summary":"Save availabe items","operationId":"saveItemUsingPOST_2","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/ConsultantInformation"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConsultantInformation"}},"201":{"description":"Successfully saved","schema":{"$ref":"#/definitions/ConsultantInformation"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/consultant_information/save":{"post":{"tags":["consultant-information-controller"],"summary":"saveClientInformationWithFile","operationId":"saveClientInformationWithFileUsingPOST","consumes":["multipart/form-data"],"produces":["*/*"],"parameters":[{"name":"data","in":"query","description":"data","required":true,"type":"string"},{"name":"file","in":"formData","description":"file","required":false,"type":"file"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConsultantInformation"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/consultant_information/{id}":{"get":{"tags":["consultant-information-controller"],"summary":"getItem","operationId":"getItemUsingGET_2","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConsultantInformation"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"put":{"tags":["consultant-information-controller"],"summary":"updateItem","operationId":"updateItemUsingPUT_2","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"},{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/ConsultantInformation"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConsultantInformation"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"delete":{"tags":["consultant-information-controller"],"summary":"deleteItem","operationId":"deleteItemUsingDELETE_2","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseEntity«ConsultantInformation»"}},"401":{"description":"Unauthorized"},"204":{"description":"No Content"},"403":{"description":"Forbidden"}}}},"/conversation":{"get":{"tags":["conversation-controller"],"summary":"getItems","operationId":"getItemsUsingGET_3","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«Conversation»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"post":{"tags":["conversation-controller"],"summary":"Save availabe items","operationId":"saveItemUsingPOST_3","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK"},"201":{"description":"Successfully saved"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/conversation/close/{id}":{"post":{"tags":["conversation-controller"],"summary":"close","operationId":"closeUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"type":"string"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/conversation/statuses/{id}":{"get":{"tags":["conversation-controller"],"summary":"statuses","operationId":"statusesUsingGET","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"type":"string"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/conversation/{id}":{"get":{"tags":["conversation-controller"],"summary":"getItem","operationId":"getItemUsingGET_3","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Conversation"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"put":{"tags":["conversation-controller"],"summary":"updateItem","operationId":"updateItemUsingPUT_3","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"},{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/Conversation"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Conversation"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"delete":{"tags":["conversation-controller"],"summary":"deleteItem","operationId":"deleteItemUsingDELETE_3","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseEntity«Conversation»"}},"401":{"description":"Unauthorized"},"204":{"description":"No Content"},"403":{"description":"Forbidden"}}}},"/conversation_message":{"get":{"tags":["conversation-message-controller"],"summary":"getItems","operationId":"getItemsUsingGET_5","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«ConversationMessage»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"post":{"tags":["conversation-message-controller"],"summary":"Save availabe items","operationId":"saveItemUsingPOST_4","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK"},"201":{"description":"Successfully saved"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/conversation_message/conversation/{id}":{"get":{"tags":["conversation-message-controller"],"summary":"getItems","operationId":"getItemsUsingGET_4","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«ConversationMessage»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/conversation_message/save":{"post":{"tags":["conversation-message-controller"],"summary":"saveClientInformationWithFile","operationId":"saveClientInformationWithFileUsingPOST_1","consumes":["multipart/form-data"],"produces":["*/*"],"parameters":[{"name":"data","in":"query","description":"data","required":true,"type":"string"},{"name":"file","in":"formData","description":"file","required":false,"type":"file"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConversationMessage"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/conversation_message/{id}":{"get":{"tags":["conversation-message-controller"],"summary":"getItem","operationId":"getItemUsingGET_4","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConversationMessage"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"put":{"tags":["conversation-message-controller"],"summary":"updateItem","operationId":"updateItemUsingPUT_4","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"},{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/ConversationMessage"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConversationMessage"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"delete":{"tags":["conversation-message-controller"],"summary":"deleteItem","operationId":"deleteItemUsingDELETE_4","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseEntity«ConversationMessage»"}},"401":{"description":"Unauthorized"},"204":{"description":"No Content"},"403":{"description":"Forbidden"}}}},"/conversation_status":{"get":{"tags":["conversation-status-controller"],"summary":"getItems","operationId":"getItemsUsingGET_6","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«ConversationStatus»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"post":{"tags":["conversation-status-controller"],"summary":"Save availabe items","operationId":"saveItemUsingPOST_5","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/ConversationStatus"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConversationStatus"}},"201":{"description":"Successfully saved","schema":{"$ref":"#/definitions/ConversationStatus"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/conversation_status/{id}":{"get":{"tags":["conversation-status-controller"],"summary":"getItem","operationId":"getItemUsingGET_5","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConversationStatus"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"put":{"tags":["conversation-status-controller"],"summary":"updateItem","operationId":"updateItemUsingPUT_5","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"},{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/ConversationStatus"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConversationStatus"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"delete":{"tags":["conversation-status-controller"],"summary":"deleteItem","operationId":"deleteItemUsingDELETE_5","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseEntity«ConversationStatus»"}},"401":{"description":"Unauthorized"},"204":{"description":"No Content"},"403":{"description":"Forbidden"}}}},"/customer_information":{"get":{"tags":["customer-information-controller"],"summary":"getItems","operationId":"getItemsUsingGET_7","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«CustomerInformation»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"post":{"tags":["customer-information-controller"],"summary":"Save availabe items","operationId":"saveItemUsingPOST_6","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK"},"201":{"description":"Successfully saved"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/customer_information/{id}":{"get":{"tags":["customer-information-controller"],"summary":"getItem","operationId":"getItemUsingGET_6","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/CustomerInformation"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"put":{"tags":["customer-information-controller"],"summary":"updateItem","operationId":"updateItemUsingPUT_6","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK"},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"delete":{"tags":["customer-information-controller"],"summary":"deleteItem","operationId":"deleteItemUsingDELETE_6","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseEntity«CustomerInformation»"}},"401":{"description":"Unauthorized"},"204":{"description":"No Content"},"403":{"description":"Forbidden"}}}},"/customer_payment":{"get":{"tags":["customer-payment-controller"],"summary":"getItems","operationId":"getItemsUsingGET_8","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«CustomerPayment»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"post":{"tags":["customer-payment-controller"],"summary":"Save availabe items","operationId":"saveItemUsingPOST_7","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/CustomerPayment"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/CustomerPayment"}},"201":{"description":"Successfully saved","schema":{"$ref":"#/definitions/CustomerPayment"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/customer_payment/conversation/{id}":{"get":{"tags":["customer-payment-controller"],"summary":"getItemsForConversation","operationId":"getItemsForConversationUsingGET","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«CustomerPayment»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/customer_payment/save":{"post":{"tags":["customer-payment-controller"],"summary":"setToken","operationId":"setTokenUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"tokenParameter","description":"tokenParameter","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","schema":{"type":"string"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/customer_payment/{id}":{"get":{"tags":["customer-payment-controller"],"summary":"getItem","operationId":"getItemUsingGET_7","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/CustomerPayment"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"put":{"tags":["customer-payment-controller"],"summary":"updateItem","operationId":"updateItemUsingPUT_7","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"},{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/CustomerPayment"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/CustomerPayment"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"delete":{"tags":["customer-payment-controller"],"summary":"deleteItem","operationId":"deleteItemUsingDELETE_7","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseEntity«CustomerPayment»"}},"401":{"description":"Unauthorized"},"204":{"description":"No Content"},"403":{"description":"Forbidden"}}}},"/springjwt/getuserroles":{"get":{"tags":["resource-controller"],"summary":"getuserroles","operationId":"getuserrolesUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"array","items":{"type":"string"}}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"head":{"tags":["resource-controller"],"summary":"getuserroles","operationId":"getuserrolesUsingHEAD","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"array","items":{"type":"string"}}},"401":{"description":"Unauthorized"},"204":{"description":"No Content"},"403":{"description":"Forbidden"}}},"post":{"tags":["resource-controller"],"summary":"getuserroles","operationId":"getuserrolesUsingPOST","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"array","items":{"type":"string"}}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"put":{"tags":["resource-controller"],"summary":"getuserroles","operationId":"getuserrolesUsingPUT","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"array","items":{"type":"string"}}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"delete":{"tags":["resource-controller"],"summary":"getuserroles","operationId":"getuserrolesUsingDELETE","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"array","items":{"type":"string"}}},"401":{"description":"Unauthorized"},"204":{"description":"No Content"},"403":{"description":"Forbidden"}}},"options":{"tags":["resource-controller"],"summary":"getuserroles","operationId":"getuserrolesUsingOPTIONS","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"array","items":{"type":"string"}}},"401":{"description":"Unauthorized"},"204":{"description":"No Content"},"403":{"description":"Forbidden"}}},"patch":{"tags":["resource-controller"],"summary":"getuserroles","operationId":"getuserrolesUsingPATCH","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"array","items":{"type":"string"}}},"401":{"description":"Unauthorized"},"204":{"description":"No Content"},"403":{"description":"Forbidden"}}}},"/springjwt/users":{"get":{"tags":["resource-controller"],"summary":"getUsers","operationId":"getUsersUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"array","items":{"$ref":"#/definitions/User"}}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/summary_payments":{"get":{"tags":["summary-payments-controller"],"summary":"getItems","operationId":"getItemsUsingGET_9","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«ConsultantGroup»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"post":{"tags":["summary-payments-controller"],"summary":"Save availabe items","operationId":"saveItemUsingPOST_8","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/ConsultantGroup"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConsultantGroup"}},"201":{"description":"Successfully saved","schema":{"$ref":"#/definitions/ConsultantGroup"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/summary_payments/reports":{"get":{"tags":["summary-payments-controller"],"summary":"getReports","operationId":"getReportsUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«SummaryPayments»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/summary_payments/send":{"post":{"tags":["summary-payments-controller"],"summary":"sendReports","operationId":"sendReportsUsingPOST","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«SummaryPayments»"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/summary_payments/{id}":{"get":{"tags":["summary-payments-controller"],"summary":"getItem","operationId":"getItemUsingGET_8","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConsultantGroup"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"put":{"tags":["summary-payments-controller"],"summary":"updateItem","operationId":"updateItemUsingPUT_8","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"},{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/ConsultantGroup"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ConsultantGroup"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"delete":{"tags":["summary-payments-controller"],"summary":"deleteItem","operationId":"deleteItemUsingDELETE_8","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseEntity«ConsultantGroup»"}},"401":{"description":"Unauthorized"},"204":{"description":"No Content"},"403":{"description":"Forbidden"}}}},"/user":{"get":{"tags":["user-controller"],"summary":"getItems","operationId":"getItemsUsingGET_10","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«User»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"post":{"tags":["user-controller"],"summary":"Save availabe items","operationId":"saveItemUsingPOST_9","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/User"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/User"}},"201":{"description":"Successfully saved","schema":{"$ref":"#/definitions/User"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/user/client":{"get":{"tags":["user-controller"],"summary":"getCustomers","operationId":"getCustomersUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«User»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/user/consultant":{"get":{"tags":["user-controller"],"summary":"getConsultants","operationId":"getConsultantsUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Collection«User»"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/user/registration":{"post":{"tags":["user-controller"],"summary":"registerUserAccount","operationId":"registerUserAccountUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"userJson","description":"userJson","required":true,"schema":{"$ref":"#/definitions/UserJson"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/UserJson"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/user/token":{"post":{"tags":["user-controller"],"summary":"setToken","operationId":"setTokenUsingPOST_1","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"token","description":"token","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","schema":{"type":"string"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/user/{id}":{"get":{"tags":["user-controller"],"summary":"getItem","operationId":"getItemUsingGET_9","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/User"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"put":{"tags":["user-controller"],"summary":"updateItem","operationId":"updateItemUsingPUT_9","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"},{"in":"body","name":"information","description":"information","required":true,"schema":{"$ref":"#/definitions/User"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/User"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"delete":{"tags":["user-controller"],"summary":"deleteItem","operationId":"deleteItemUsingDELETE_9","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseEntity«User»"}},"401":{"description":"Unauthorized"},"204":{"description":"No Content"},"403":{"description":"Forbidden"}}}}},"definitions":{"UserJson":{"type":"object","properties":{"email":{"type":"string"},"firstName":{"type":"string"},"id":{"type":"integer","format":"int64"},"lastName":{"type":"string"},"password":{"type":"string"},"roles":{"type":"array","items":{"type":"string"}},"username":{"type":"string"}}},"User":{"type":"object","properties":{"consultantGroupUsersById":{"$ref":"#/definitions/Collection«ConsultantGroupUser»"},"customerInformationsById":{"$ref":"#/definitions/Collection«CustomerInformation»"},"email":{"type":"string"},"firstName":{"type":"string"},"id":{"type":"integer","format":"int64"},"lastName":{"type":"string"},"password":{"type":"string"},"roles":{"$ref":"#/definitions/Collection«Role»"},"token":{"type":"string"},"username":{"type":"string"}}},"CustomerInformation":{"type":"object","properties":{"additionalInformation":{"type":"string"},"birthData":{"type":"string","format":"date"},"id":{"type":"integer","format":"int64"},"primary":{"type":"string","format":"byte"},"user":{"$ref":"#/definitions/User"}}},"Collection«Role»":{"type":"object"},"ResponseEntity«User»":{"type":"object","properties":{"body":{"$ref":"#/definitions/User"},"statusCode":{"type":"string","enum":["100","101","102","103","200","201","202","203","204","205","206","207","208","226","300","301","302","303","304","305","307","308","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","426","428","429","431","451","500","501","502","503","504","505","506","507","508","509","510","511"]},"statusCodeValue":{"type":"integer","format":"int32"}}},"CustomerPayment":{"type":"object","properties":{"amount":{"type":"integer","format":"int64"},"conversation":{"$ref":"#/definitions/Conversation"},"dataTime":{"type":"string","format":"date"},"id":{"type":"integer","format":"int64"}}},"ConversationMessage":{"type":"object","properties":{"attachedFile":{"type":"string"},"conversation":{"$ref":"#/definitions/Conversation"},"dateTime":{"type":"string","example":"yyyy-MM-dd'T'HH:mm:ss"},"id":{"type":"integer","format":"int64"},"isConsultantMessage":{"type":"string","format":"byte"},"message":{"type":"string"},"videoDuration":{"$ref":"#/definitions/Time"},"videoExternalLink":{"type":"string"}}},"Time":{"type":"object","properties":{"date":{"type":"integer","format":"int32"},"day":{"type":"integer","format":"int32"},"hours":{"type":"integer","format":"int32"},"minutes":{"type":"integer","format":"int32"},"month":{"type":"integer","format":"int32"},"seconds":{"type":"integer","format":"int32"},"time":{"type":"integer","format":"int64"},"timezoneOffset":{"type":"integer","format":"int32"},"year":{"type":"integer","format":"int32"}}},"Conversation":{"type":"object","properties":{"active":{"type":"string","format":"byte"},"consultantGroupUser":{"$ref":"#/definitions/ConsultantGroupUser"},"customerInformation":{"$ref":"#/definitions/CustomerInformation"},"id":{"type":"integer","format":"int64"},"messagesCount":{"type":"integer","format":"int32"}}},"ResponseEntity«ConsultantGroupUser»":{"type":"object","properties":{"body":{"$ref":"#/definitions/ConsultantGroupUser"},"statusCode":{"type":"string","enum":["100","101","102","103","200","201","202","203","204","205","206","207","208","226","300","301","302","303","304","305","307","308","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","426","428","429","431","451","500","501","502","503","504","505","506","507","508","509","510","511"]},"statusCodeValue":{"type":"integer","format":"int32"}}},"ResponseEntity«CustomerPayment»":{"type":"object","properties":{"body":{"$ref":"#/definitions/CustomerPayment"},"statusCode":{"type":"string","enum":["100","101","102","103","200","201","202","203","204","205","206","207","208","226","300","301","302","303","304","305","307","308","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","426","428","429","431","451","500","501","502","503","504","505","506","507","508","509","510","511"]},"statusCodeValue":{"type":"integer","format":"int32"}}},"ResponseEntity«ConsultantGroup»":{"type":"object","properties":{"body":{"$ref":"#/definitions/ConsultantGroup"},"statusCode":{"type":"string","enum":["100","101","102","103","200","201","202","203","204","205","206","207","208","226","300","301","302","303","304","305","307","308","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","426","428","429","431","451","500","501","502","503","504","505","506","507","508","509","510","511"]},"statusCodeValue":{"type":"integer","format":"int32"}}},"Timestamp":{"type":"object","properties":{"date":{"type":"integer","format":"int32"},"day":{"type":"integer","format":"int32"},"hours":{"type":"integer","format":"int32"},"minutes":{"type":"integer","format":"int32"},"month":{"type":"integer","format":"int32"},"nanos":{"type":"integer","format":"int32"},"seconds":{"type":"integer","format":"int32"},"time":{"type":"integer","format":"int64"},"timezoneOffset":{"type":"integer","format":"int32"},"year":{"type":"integer","format":"int32"}}},"Collection«CustomerPayment»":{"type":"object"},"Collection«ConsultantGroup»":{"type":"object"},"ConversationStatusHistory":{"type":"object","properties":{"conversation":{"$ref":"#/definitions/Conversation"},"conversationStatuses":{"$ref":"#/definitions/ConversationStatus"},"dateTime":{"$ref":"#/definitions/Timestamp"},"id":{"type":"integer","format":"int64"}}},"ResponseEntity«ConversationStatus»":{"type":"object","properties":{"body":{"$ref":"#/definitions/ConversationStatus"},"statusCode":{"type":"string","enum":["100","101","102","103","200","201","202","203","204","205","206","207","208","226","300","301","302","303","304","305","307","308","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","426","428","429","431","451","500","501","502","503","504","505","506","507","508","509","510","511"]},"statusCodeValue":{"type":"integer","format":"int32"}}},"Collection«SummaryPayments»":{"type":"object"},"Collection«ConsultantGroupUser»":{"type":"object"},"ResponseEntity«ConsultantInformation»":{"type":"object","properties":{"body":{"$ref":"#/definitions/ConsultantInformation"},"statusCode":{"type":"string","enum":["100","101","102","103","200","201","202","203","204","205","206","207","208","226","300","301","302","303","304","305","307","308","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","426","428","429","431","451","500","501","502","503","504","505","506","507","508","509","510","511"]},"statusCodeValue":{"type":"integer","format":"int32"}}},"ConsultantGroup":{"type":"object","properties":{"conversationTarif":{"type":"integer","format":"int32"},"description":{"type":"string"},"id":{"type":"integer","format":"int64"},"name":{"type":"string"},"videoTarif":{"type":"integer","format":"int32"}}},"Collection«Conversation»":{"type":"object"},"ResponseEntity«CustomerInformation»":{"type":"object","properties":{"body":{"$ref":"#/definitions/CustomerInformation"},"statusCode":{"type":"string","enum":["100","101","102","103","200","201","202","203","204","205","206","207","208","226","300","301","302","303","304","305","307","308","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","426","428","429","431","451","500","501","502","503","504","505","506","507","508","509","510","511"]},"statusCodeValue":{"type":"integer","format":"int32"}}},"Collection«ConversationStatusHistory»":{"type":"object"},"Collection«User»":{"type":"object"},"Role":{"type":"object","properties":{"description":{"type":"string"},"id":{"type":"integer","format":"int64"},"roleName":{"type":"string"}}},"ResponseEntity«ConversationMessage»":{"type":"object","properties":{"body":{"$ref":"#/definitions/ConversationMessage"},"statusCode":{"type":"string","enum":["100","101","102","103","200","201","202","203","204","205","206","207","208","226","300","301","302","303","304","305","307","308","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","426","428","429","431","451","500","501","502","503","504","505","506","507","508","509","510","511"]},"statusCodeValue":{"type":"integer","format":"int32"}}},"ConsultantGroupUser":{"type":"object","properties":{"consultantGroup":{"$ref":"#/definitions/ConsultantGroup"},"conversationTarif":{"type":"integer","format":"int32"},"id":{"type":"integer","format":"int64"},"status":{"type":"string","format":"byte"},"user":{"$ref":"#/definitions/User"},"videoTarif":{"type":"integer","format":"int32"}}},"ConsultantInformation":{"type":"object","properties":{"availableFrom":{"$ref":"#/definitions/Time"},"availableUntil":{"$ref":"#/definitions/Time"},"consultantGroupUser":{"$ref":"#/definitions/ConsultantGroupUser"},"degree":{"type":"string"},"education":{"type":"string"},"id":{"type":"integer","format":"int64"},"licenseFile":{"type":"string"},"licenseNumber":{"type":"string"},"licenseUntil":{"type":"string","format":"date"}}},"SummaryPayments":{"type":"object","properties":{"date":{"type":"string","format":"date-time"},"messageCount":{"type":"integer","format":"int32"},"paymentsCount":{"type":"integer","format":"int32"},"sum":{"type":"number","format":"double"}}},"ResponseEntity«Conversation»":{"type":"object","properties":{"body":{"$ref":"#/definitions/Conversation"},"statusCode":{"type":"string","enum":["100","101","102","103","200","201","202","203","204","205","206","207","208","226","300","301","302","303","304","305","307","308","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","426","428","429","431","451","500","501","502","503","504","505","506","507","508","509","510","511"]},"statusCodeValue":{"type":"integer","format":"int32"}}},"Collection«CustomerInformation»":{"type":"object"},"Collection«ConsultantInformation»":{"type":"object"},"ConversationStatus":{"type":"object","properties":{"conversationStatusHistories":{"$ref":"#/definitions/Collection«ConversationStatusHistory»"},"description":{"type":"string"},"id":{"type":"integer","format":"int64"},"name":{"type":"string"}}},"Collection«ConversationStatus»":{"type":"object"},"Collection«ConversationMessage»":{"type":"object"}}}
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Spring Boot REST API for Online Store",
+    "version": "1.0",
+    "title": "Spring Boot REST API",
+    "termsOfService": "Terms of service",
+    "contact": {
+      "name": "Pavel Leonov",
+      "email": "leonpolq@gmail.com"
+    },
+    "license": {
+      "name": "Apache License Version 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "localhost:8086",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "conversation-controller",
+      "description": "Conversation Controller"
+    },
+    {
+      "name": "consultant-information-controller",
+      "description": "Consultant Information Controller"
+    },
+    {
+      "name": "conversation-message-controller",
+      "description": "Conversation Message Controller"
+    },
+    {
+      "name": "customer-information-controller",
+      "description": "Customer Information Controller"
+    },
+    {
+      "name": "user-controller",
+      "description": "Operations with users"
+    },
+    {
+      "name": "assets-controller",
+      "description": "Assets Controller"
+    },
+    {
+      "name": "customer-payment-controller",
+      "description": "Customer Payment Controller"
+    },
+    {
+      "name": "consultant-group-controller",
+      "description": "Consultant Group Controller"
+    },
+    {
+      "name": "conversation-status-controller",
+      "description": "Conversation Status Controller"
+    },
+    {
+      "name": "summary-payments-controller",
+      "description": "Summary Payments Controller"
+    },
+    {
+      "name": "consultant-group-user-controller",
+      "description": "Consultant Group User Controller"
+    },
+    {
+      "name": "resource-controller",
+      "description": "Resource Controller"
+    }
+  ],
+  "paths": {
+    "/assets/download/{id}": {
+      "get": {
+        "tags": [
+          "assets-controller"
+        ],
+        "summary": "downloadImage",
+        "operationId": "downloadImageUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "byte"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/assets/{id}": {
+      "get": {
+        "tags": [
+          "assets-controller"
+        ],
+        "summary": "showImage",
+        "operationId": "showImageUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "byte"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/consultant_group": {
+      "get": {
+        "tags": [
+          "consultant-group-controller"
+        ],
+        "summary": "getItems",
+        "operationId": "getItemsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«ConsultantGroup»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "consultant-group-controller"
+        ],
+        "summary": "Save availabe items",
+        "operationId": "saveItemUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroup"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroup"
+            }
+          },
+          "201": {
+            "description": "Successfully saved",
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroup"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/consultant_group/{id}": {
+      "get": {
+        "tags": [
+          "consultant-group-controller"
+        ],
+        "summary": "getItem",
+        "operationId": "getItemUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroup"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "consultant-group-controller"
+        ],
+        "summary": "updateItem",
+        "operationId": "updateItemUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroup"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroup"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "consultant-group-controller"
+        ],
+        "summary": "deleteItem",
+        "operationId": "deleteItemUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity«ConsultantGroup»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/consultant_group_user": {
+      "get": {
+        "tags": [
+          "consultant-group-user-controller"
+        ],
+        "summary": "getItems",
+        "operationId": "getItemsUsingGET_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«ConsultantGroupUser»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "consultant-group-user-controller"
+        ],
+        "summary": "Save availabe items",
+        "operationId": "saveItemUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroupUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroupUser"
+            }
+          },
+          "201": {
+            "description": "Successfully saved",
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroupUser"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/consultant_group_user/{id}": {
+      "get": {
+        "tags": [
+          "consultant-group-user-controller"
+        ],
+        "summary": "getItem",
+        "operationId": "getItemUsingGET_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroupUser"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "consultant-group-user-controller"
+        ],
+        "summary": "updateItem",
+        "operationId": "updateItemUsingPUT_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroupUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroupUser"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "consultant-group-user-controller"
+        ],
+        "summary": "deleteItem",
+        "operationId": "deleteItemUsingDELETE_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity«ConsultantGroupUser»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/consultant_information": {
+      "get": {
+        "tags": [
+          "consultant-information-controller"
+        ],
+        "summary": "getItems",
+        "operationId": "getItemsUsingGET_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«ConsultantInformation»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "consultant-information-controller"
+        ],
+        "summary": "Save availabe items",
+        "operationId": "saveItemUsingPOST_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConsultantInformation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConsultantInformation"
+            }
+          },
+          "201": {
+            "description": "Successfully saved",
+            "schema": {
+              "$ref": "#/definitions/ConsultantInformation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/consultant_information/save": {
+      "post": {
+        "tags": [
+          "consultant-information-controller"
+        ],
+        "summary": "saveClientInformationWithFile",
+        "operationId": "saveClientInformationWithFileUsingPOST",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "data",
+            "in": "query",
+            "description": "data",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "file",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConsultantInformation"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/consultant_information/{id}": {
+      "get": {
+        "tags": [
+          "consultant-information-controller"
+        ],
+        "summary": "getItem",
+        "operationId": "getItemUsingGET_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConsultantInformation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "consultant-information-controller"
+        ],
+        "summary": "updateItem",
+        "operationId": "updateItemUsingPUT_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConsultantInformation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConsultantInformation"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "consultant-information-controller"
+        ],
+        "summary": "deleteItem",
+        "operationId": "deleteItemUsingDELETE_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity«ConsultantInformation»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/conversation": {
+      "get": {
+        "tags": [
+          "conversation-controller"
+        ],
+        "summary": "getItems",
+        "operationId": "getItemsUsingGET_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«Conversation»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "conversation-controller"
+        ],
+        "summary": "Save availabe items",
+        "operationId": "saveItemUsingPOST_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Successfully saved"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/conversation/close/{id}": {
+      "post": {
+        "tags": [
+          "conversation-controller"
+        ],
+        "summary": "close",
+        "operationId": "closeUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/conversation/statuses/{id}": {
+      "get": {
+        "tags": [
+          "conversation-controller"
+        ],
+        "summary": "statuses",
+        "operationId": "statusesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/conversation/{id}": {
+      "get": {
+        "tags": [
+          "conversation-controller"
+        ],
+        "summary": "getItem",
+        "operationId": "getItemUsingGET_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Conversation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "conversation-controller"
+        ],
+        "summary": "updateItem",
+        "operationId": "updateItemUsingPUT_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Conversation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Conversation"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "conversation-controller"
+        ],
+        "summary": "deleteItem",
+        "operationId": "deleteItemUsingDELETE_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity«Conversation»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/conversation_message": {
+      "get": {
+        "tags": [
+          "conversation-message-controller"
+        ],
+        "summary": "getItems",
+        "operationId": "getItemsUsingGET_5",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«ConversationMessage»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "conversation-message-controller"
+        ],
+        "summary": "Save availabe items",
+        "operationId": "saveItemUsingPOST_4",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Successfully saved"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/conversation_message/conversation/{id}": {
+      "get": {
+        "tags": [
+          "conversation-message-controller"
+        ],
+        "summary": "getItems",
+        "operationId": "getItemsUsingGET_4",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«ConversationMessage»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/conversation_message/save": {
+      "post": {
+        "tags": [
+          "conversation-message-controller"
+        ],
+        "summary": "saveClientInformationWithFile",
+        "operationId": "saveClientInformationWithFileUsingPOST_1",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "data",
+            "in": "query",
+            "description": "data",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "file",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConversationMessage"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/conversation_message/{id}": {
+      "get": {
+        "tags": [
+          "conversation-message-controller"
+        ],
+        "summary": "getItem",
+        "operationId": "getItemUsingGET_4",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConversationMessage"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "conversation-message-controller"
+        ],
+        "summary": "updateItem",
+        "operationId": "updateItemUsingPUT_4",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConversationMessage"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConversationMessage"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "conversation-message-controller"
+        ],
+        "summary": "deleteItem",
+        "operationId": "deleteItemUsingDELETE_4",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity«ConversationMessage»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/conversation_status": {
+      "get": {
+        "tags": [
+          "conversation-status-controller"
+        ],
+        "summary": "getItems",
+        "operationId": "getItemsUsingGET_6",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«ConversationStatus»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "conversation-status-controller"
+        ],
+        "summary": "Save availabe items",
+        "operationId": "saveItemUsingPOST_5",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConversationStatus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConversationStatus"
+            }
+          },
+          "201": {
+            "description": "Successfully saved",
+            "schema": {
+              "$ref": "#/definitions/ConversationStatus"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/conversation_status/{id}": {
+      "get": {
+        "tags": [
+          "conversation-status-controller"
+        ],
+        "summary": "getItem",
+        "operationId": "getItemUsingGET_5",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConversationStatus"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "conversation-status-controller"
+        ],
+        "summary": "updateItem",
+        "operationId": "updateItemUsingPUT_5",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConversationStatus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConversationStatus"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "conversation-status-controller"
+        ],
+        "summary": "deleteItem",
+        "operationId": "deleteItemUsingDELETE_5",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity«ConversationStatus»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/customer_information": {
+      "get": {
+        "tags": [
+          "customer-information-controller"
+        ],
+        "summary": "getItems",
+        "operationId": "getItemsUsingGET_7",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«CustomerInformation»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "customer-information-controller"
+        ],
+        "summary": "Save availabe items",
+        "operationId": "saveItemUsingPOST_6",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Successfully saved"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/customer_information/{id}": {
+      "get": {
+        "tags": [
+          "customer-information-controller"
+        ],
+        "summary": "getItem",
+        "operationId": "getItemUsingGET_6",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CustomerInformation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "customer-information-controller"
+        ],
+        "summary": "updateItem",
+        "operationId": "updateItemUsingPUT_6",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "customer-information-controller"
+        ],
+        "summary": "deleteItem",
+        "operationId": "deleteItemUsingDELETE_6",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity«CustomerInformation»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/customer_payment": {
+      "get": {
+        "tags": [
+          "customer-payment-controller"
+        ],
+        "summary": "getItems",
+        "operationId": "getItemsUsingGET_8",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«CustomerPayment»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "customer-payment-controller"
+        ],
+        "summary": "Save availabe items",
+        "operationId": "saveItemUsingPOST_7",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CustomerPayment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CustomerPayment"
+            }
+          },
+          "201": {
+            "description": "Successfully saved",
+            "schema": {
+              "$ref": "#/definitions/CustomerPayment"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/customer_payment/conversation/{id}": {
+      "get": {
+        "tags": [
+          "customer-payment-controller"
+        ],
+        "summary": "getItemsForConversation",
+        "operationId": "getItemsForConversationUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«CustomerPayment»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/customer_payment/save": {
+      "post": {
+        "tags": [
+          "customer-payment-controller"
+        ],
+        "summary": "setToken",
+        "operationId": "setTokenUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "tokenParameter",
+            "description": "tokenParameter",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/customer_payment/{id}": {
+      "get": {
+        "tags": [
+          "customer-payment-controller"
+        ],
+        "summary": "getItem",
+        "operationId": "getItemUsingGET_7",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CustomerPayment"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "customer-payment-controller"
+        ],
+        "summary": "updateItem",
+        "operationId": "updateItemUsingPUT_7",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CustomerPayment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CustomerPayment"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "customer-payment-controller"
+        ],
+        "summary": "deleteItem",
+        "operationId": "deleteItemUsingDELETE_7",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity«CustomerPayment»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/springjwt/getuserroles": {
+      "get": {
+        "tags": [
+          "resource-controller"
+        ],
+        "summary": "getuserroles",
+        "operationId": "getuserrolesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "resource-controller"
+        ],
+        "summary": "getuserroles",
+        "operationId": "getuserrolesUsingHEAD",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "resource-controller"
+        ],
+        "summary": "getuserroles",
+        "operationId": "getuserrolesUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "resource-controller"
+        ],
+        "summary": "getuserroles",
+        "operationId": "getuserrolesUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "resource-controller"
+        ],
+        "summary": "getuserroles",
+        "operationId": "getuserrolesUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "options": {
+        "tags": [
+          "resource-controller"
+        ],
+        "summary": "getuserroles",
+        "operationId": "getuserrolesUsingOPTIONS",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "resource-controller"
+        ],
+        "summary": "getuserroles",
+        "operationId": "getuserrolesUsingPATCH",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/springjwt/users": {
+      "get": {
+        "tags": [
+          "resource-controller"
+        ],
+        "summary": "getUsers",
+        "operationId": "getUsersUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/summary_payments": {
+      "get": {
+        "tags": [
+          "summary-payments-controller"
+        ],
+        "summary": "getItems",
+        "operationId": "getItemsUsingGET_9",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«ConsultantGroup»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "summary-payments-controller"
+        ],
+        "summary": "Save availabe items",
+        "operationId": "saveItemUsingPOST_8",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroup"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroup"
+            }
+          },
+          "201": {
+            "description": "Successfully saved",
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroup"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/summary_payments/reports": {
+      "get": {
+        "tags": [
+          "summary-payments-controller"
+        ],
+        "summary": "getReports",
+        "operationId": "getReportsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«SummaryPayments»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/summary_payments/send": {
+      "post": {
+        "tags": [
+          "summary-payments-controller"
+        ],
+        "summary": "sendReports",
+        "operationId": "sendReportsUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«SummaryPayments»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/summary_payments/{id}": {
+      "get": {
+        "tags": [
+          "summary-payments-controller"
+        ],
+        "summary": "getItem",
+        "operationId": "getItemUsingGET_8",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroup"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "summary-payments-controller"
+        ],
+        "summary": "updateItem",
+        "operationId": "updateItemUsingPUT_8",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroup"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConsultantGroup"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "summary-payments-controller"
+        ],
+        "summary": "deleteItem",
+        "operationId": "deleteItemUsingDELETE_8",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity«ConsultantGroup»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "getItems",
+        "operationId": "getItemsUsingGET_10",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«User»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Save availabe items",
+        "operationId": "saveItemUsingPOST_9",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "201": {
+            "description": "Successfully saved",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/client": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "getCustomers",
+        "operationId": "getCustomersUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«User»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/consultant": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "getConsultants",
+        "operationId": "getConsultantsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Collection«User»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/registration": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "registerUserAccount",
+        "operationId": "registerUserAccountUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "userJson",
+            "description": "userJson",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserJson"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserJson"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/token": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "setToken",
+        "operationId": "setTokenUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "token",
+            "description": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "getItem",
+        "operationId": "getItemUsingGET_9",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "updateItem",
+        "operationId": "updateItemUsingPUT_9",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "information",
+            "description": "information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "deleteItem",
+        "operationId": "deleteItemUsingDELETE_9",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity«User»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UserJson": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "consultantGroupUsersById": {
+          "$ref": "#/definitions/Collection«ConsultantGroupUser»"
+        },
+        "customerInformationsById": {
+          "$ref": "#/definitions/Collection«CustomerInformation»"
+        },
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "roles": {
+          "$ref": "#/definitions/Collection«Role»"
+        },
+        "token": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "CustomerInformation": {
+      "type": "object",
+      "properties": {
+        "additionalInformation": {
+          "type": "string"
+        },
+        "birthData": {
+          "type": "string",
+          "format": "date"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "primary": {
+          "type": "string",
+          "format": "byte"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      }
+    },
+    "Collection«Role»": {
+      "type": "object"
+    },
+    "ResponseEntity«User»": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "$ref": "#/definitions/User"
+        },
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "100",
+            "101",
+            "102",
+            "103",
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "226",
+            "300",
+            "301",
+            "302",
+            "303",
+            "304",
+            "305",
+            "307",
+            "308",
+            "400",
+            "401",
+            "402",
+            "403",
+            "404",
+            "405",
+            "406",
+            "407",
+            "408",
+            "409",
+            "410",
+            "411",
+            "412",
+            "413",
+            "414",
+            "415",
+            "416",
+            "417",
+            "418",
+            "419",
+            "420",
+            "421",
+            "422",
+            "423",
+            "424",
+            "426",
+            "428",
+            "429",
+            "431",
+            "451",
+            "500",
+            "501",
+            "502",
+            "503",
+            "504",
+            "505",
+            "506",
+            "507",
+            "508",
+            "509",
+            "510",
+            "511"
+          ]
+        },
+        "statusCodeValue": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "CustomerPayment": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "conversation": {
+          "$ref": "#/definitions/Conversation"
+        },
+        "dataTime": {
+          "type": "string",
+          "format": "date"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "ConversationMessage": {
+      "type": "object",
+      "properties": {
+        "attachedFile": {
+          "type": "string"
+        },
+        "conversation": {
+          "$ref": "#/definitions/Conversation"
+        },
+        "dateTime": {
+          "type": "string",
+          "example": "yyyy-MM-dd'T'HH:mm:ss"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "isConsultantMessage": {
+          "type": "string",
+          "format": "byte"
+        },
+        "message": {
+          "type": "string"
+        },
+        "videoDuration": {
+          "$ref": "#/definitions/Time"
+        },
+        "videoExternalLink": {
+          "type": "string"
+        }
+      }
+    },
+    "Time": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hours": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minutes": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "month": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "time": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "timezoneOffset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "year": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Conversation": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "string",
+          "format": "byte"
+        },
+        "consultantGroupUser": {
+          "$ref": "#/definitions/ConsultantGroupUser"
+        },
+        "customerInformation": {
+          "$ref": "#/definitions/CustomerInformation"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "messagesCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ResponseEntity«ConsultantGroupUser»": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "$ref": "#/definitions/ConsultantGroupUser"
+        },
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "100",
+            "101",
+            "102",
+            "103",
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "226",
+            "300",
+            "301",
+            "302",
+            "303",
+            "304",
+            "305",
+            "307",
+            "308",
+            "400",
+            "401",
+            "402",
+            "403",
+            "404",
+            "405",
+            "406",
+            "407",
+            "408",
+            "409",
+            "410",
+            "411",
+            "412",
+            "413",
+            "414",
+            "415",
+            "416",
+            "417",
+            "418",
+            "419",
+            "420",
+            "421",
+            "422",
+            "423",
+            "424",
+            "426",
+            "428",
+            "429",
+            "431",
+            "451",
+            "500",
+            "501",
+            "502",
+            "503",
+            "504",
+            "505",
+            "506",
+            "507",
+            "508",
+            "509",
+            "510",
+            "511"
+          ]
+        },
+        "statusCodeValue": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ResponseEntity«CustomerPayment»": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "$ref": "#/definitions/CustomerPayment"
+        },
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "100",
+            "101",
+            "102",
+            "103",
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "226",
+            "300",
+            "301",
+            "302",
+            "303",
+            "304",
+            "305",
+            "307",
+            "308",
+            "400",
+            "401",
+            "402",
+            "403",
+            "404",
+            "405",
+            "406",
+            "407",
+            "408",
+            "409",
+            "410",
+            "411",
+            "412",
+            "413",
+            "414",
+            "415",
+            "416",
+            "417",
+            "418",
+            "419",
+            "420",
+            "421",
+            "422",
+            "423",
+            "424",
+            "426",
+            "428",
+            "429",
+            "431",
+            "451",
+            "500",
+            "501",
+            "502",
+            "503",
+            "504",
+            "505",
+            "506",
+            "507",
+            "508",
+            "509",
+            "510",
+            "511"
+          ]
+        },
+        "statusCodeValue": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ResponseEntity«ConsultantGroup»": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "$ref": "#/definitions/ConsultantGroup"
+        },
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "100",
+            "101",
+            "102",
+            "103",
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "226",
+            "300",
+            "301",
+            "302",
+            "303",
+            "304",
+            "305",
+            "307",
+            "308",
+            "400",
+            "401",
+            "402",
+            "403",
+            "404",
+            "405",
+            "406",
+            "407",
+            "408",
+            "409",
+            "410",
+            "411",
+            "412",
+            "413",
+            "414",
+            "415",
+            "416",
+            "417",
+            "418",
+            "419",
+            "420",
+            "421",
+            "422",
+            "423",
+            "424",
+            "426",
+            "428",
+            "429",
+            "431",
+            "451",
+            "500",
+            "501",
+            "502",
+            "503",
+            "504",
+            "505",
+            "506",
+            "507",
+            "508",
+            "509",
+            "510",
+            "511"
+          ]
+        },
+        "statusCodeValue": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Timestamp": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hours": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minutes": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "month": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nanos": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "seconds": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "time": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "timezoneOffset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "year": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Collection«CustomerPayment»": {
+      "type": "object"
+    },
+    "Collection«ConsultantGroup»": {
+      "type": "object"
+    },
+    "ConversationStatusHistory": {
+      "type": "object",
+      "properties": {
+        "conversation": {
+          "$ref": "#/definitions/Conversation"
+        },
+        "conversationStatuses": {
+          "$ref": "#/definitions/ConversationStatus"
+        },
+        "dateTime": {
+          "$ref": "#/definitions/Timestamp"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "ResponseEntity«ConversationStatus»": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "$ref": "#/definitions/ConversationStatus"
+        },
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "100",
+            "101",
+            "102",
+            "103",
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "226",
+            "300",
+            "301",
+            "302",
+            "303",
+            "304",
+            "305",
+            "307",
+            "308",
+            "400",
+            "401",
+            "402",
+            "403",
+            "404",
+            "405",
+            "406",
+            "407",
+            "408",
+            "409",
+            "410",
+            "411",
+            "412",
+            "413",
+            "414",
+            "415",
+            "416",
+            "417",
+            "418",
+            "419",
+            "420",
+            "421",
+            "422",
+            "423",
+            "424",
+            "426",
+            "428",
+            "429",
+            "431",
+            "451",
+            "500",
+            "501",
+            "502",
+            "503",
+            "504",
+            "505",
+            "506",
+            "507",
+            "508",
+            "509",
+            "510",
+            "511"
+          ]
+        },
+        "statusCodeValue": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Collection«SummaryPayments»": {
+      "type": "object"
+    },
+    "Collection«ConsultantGroupUser»": {
+      "type": "object"
+    },
+    "ResponseEntity«ConsultantInformation»": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "$ref": "#/definitions/ConsultantInformation"
+        },
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "100",
+            "101",
+            "102",
+            "103",
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "226",
+            "300",
+            "301",
+            "302",
+            "303",
+            "304",
+            "305",
+            "307",
+            "308",
+            "400",
+            "401",
+            "402",
+            "403",
+            "404",
+            "405",
+            "406",
+            "407",
+            "408",
+            "409",
+            "410",
+            "411",
+            "412",
+            "413",
+            "414",
+            "415",
+            "416",
+            "417",
+            "418",
+            "419",
+            "420",
+            "421",
+            "422",
+            "423",
+            "424",
+            "426",
+            "428",
+            "429",
+            "431",
+            "451",
+            "500",
+            "501",
+            "502",
+            "503",
+            "504",
+            "505",
+            "506",
+            "507",
+            "508",
+            "509",
+            "510",
+            "511"
+          ]
+        },
+        "statusCodeValue": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ConsultantGroup": {
+      "type": "object",
+      "properties": {
+        "conversationTarif": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "videoTarif": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Collection«Conversation»": {
+      "type": "object"
+    },
+    "ResponseEntity«CustomerInformation»": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "$ref": "#/definitions/CustomerInformation"
+        },
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "100",
+            "101",
+            "102",
+            "103",
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "226",
+            "300",
+            "301",
+            "302",
+            "303",
+            "304",
+            "305",
+            "307",
+            "308",
+            "400",
+            "401",
+            "402",
+            "403",
+            "404",
+            "405",
+            "406",
+            "407",
+            "408",
+            "409",
+            "410",
+            "411",
+            "412",
+            "413",
+            "414",
+            "415",
+            "416",
+            "417",
+            "418",
+            "419",
+            "420",
+            "421",
+            "422",
+            "423",
+            "424",
+            "426",
+            "428",
+            "429",
+            "431",
+            "451",
+            "500",
+            "501",
+            "502",
+            "503",
+            "504",
+            "505",
+            "506",
+            "507",
+            "508",
+            "509",
+            "510",
+            "511"
+          ]
+        },
+        "statusCodeValue": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Collection«ConversationStatusHistory»": {
+      "type": "object"
+    },
+    "Collection«User»": {
+      "type": "object"
+    },
+    "Role": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "roleName": {
+          "type": "string"
+        }
+      }
+    },
+    "ResponseEntity«ConversationMessage»": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "$ref": "#/definitions/ConversationMessage"
+        },
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "100",
+            "101",
+            "102",
+            "103",
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "226",
+            "300",
+            "301",
+            "302",
+            "303",
+            "304",
+            "305",
+            "307",
+            "308",
+            "400",
+            "401",
+            "402",
+            "403",
+            "404",
+            "405",
+            "406",
+            "407",
+            "408",
+            "409",
+            "410",
+            "411",
+            "412",
+            "413",
+            "414",
+            "415",
+            "416",
+            "417",
+            "418",
+            "419",
+            "420",
+            "421",
+            "422",
+            "423",
+            "424",
+            "426",
+            "428",
+            "429",
+            "431",
+            "451",
+            "500",
+            "501",
+            "502",
+            "503",
+            "504",
+            "505",
+            "506",
+            "507",
+            "508",
+            "509",
+            "510",
+            "511"
+          ]
+        },
+        "statusCodeValue": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ConsultantGroupUser": {
+      "type": "object",
+      "properties": {
+        "consultantGroup": {
+          "$ref": "#/definitions/ConsultantGroup"
+        },
+        "conversationTarif": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "type": "string",
+          "format": "byte"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "videoTarif": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ConsultantInformation": {
+      "type": "object",
+      "properties": {
+        "availableFrom": {
+          "$ref": "#/definitions/Time"
+        },
+        "availableUntil": {
+          "$ref": "#/definitions/Time"
+        },
+        "consultantGroupUser": {
+          "$ref": "#/definitions/ConsultantGroupUser"
+        },
+        "degree": {
+          "type": "string"
+        },
+        "education": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "licenseFile": {
+          "type": "string"
+        },
+        "licenseNumber": {
+          "type": "string"
+        },
+        "licenseUntil": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "SummaryPayments": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "messageCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "paymentsCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sum": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "ResponseEntity«Conversation»": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "$ref": "#/definitions/Conversation"
+        },
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "100",
+            "101",
+            "102",
+            "103",
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "226",
+            "300",
+            "301",
+            "302",
+            "303",
+            "304",
+            "305",
+            "307",
+            "308",
+            "400",
+            "401",
+            "402",
+            "403",
+            "404",
+            "405",
+            "406",
+            "407",
+            "408",
+            "409",
+            "410",
+            "411",
+            "412",
+            "413",
+            "414",
+            "415",
+            "416",
+            "417",
+            "418",
+            "419",
+            "420",
+            "421",
+            "422",
+            "423",
+            "424",
+            "426",
+            "428",
+            "429",
+            "431",
+            "451",
+            "500",
+            "501",
+            "502",
+            "503",
+            "504",
+            "505",
+            "506",
+            "507",
+            "508",
+            "509",
+            "510",
+            "511"
+          ]
+        },
+        "statusCodeValue": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Collection«CustomerInformation»": {
+      "type": "object"
+    },
+    "Collection«ConsultantInformation»": {
+      "type": "object"
+    },
+    "ConversationStatus": {
+      "type": "object",
+      "properties": {
+        "conversationStatusHistories": {
+          "$ref": "#/definitions/Collection«ConversationStatusHistory»"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Collection«ConversationStatus»": {
+      "type": "object"
+    },
+    "Collection«ConversationMessage»": {
+      "type": "object"
+    }
+  }
+}

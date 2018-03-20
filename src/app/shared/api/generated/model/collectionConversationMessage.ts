@@ -11,5 +11,5 @@
  */
 
 
-export interface CollectionConversationMessage { 
+export interface CollectionConversationMessage {
 }

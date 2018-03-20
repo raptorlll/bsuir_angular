@@ -11,12 +11,12 @@
  */
 
 
-export interface UserJson { 
-    email?: string;
-    firstName?: string;
-    id?: number;
-    lastName?: string;
-    password?: string;
-    roles?: Array<string>;
-    username?: string;
+export interface UserJson {
+  email?: string;
+  firstName?: string;
+  id?: number;
+  lastName?: string;
+  password?: string;
+  roles?: Array<string>;
+  username?: string;
 }

@@ -9,13 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { User } from './user';
+import {User} from './user';
 
 
-export interface CustomerInformation { 
-    additionalInformation?: string;
-    birthData?: string;
-    id?: number;
-    primary?: string;
-    user?: User;
+export interface CustomerInformation {
+  additionalInformation?: string;
+  birthData?: string;
+  id?: number;
+  primary?: string;
+  user?: User;
 }

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiCommunicationService } from '../../shared/api-services/api-communication.service';
-import { userRolesList } from '../../shared/predefined-lists';
-import { Role, User } from '../../shared/models';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ApiCommunicationService} from '../../shared/api-services/api-communication.service';
+import {userRolesList} from '../../shared/predefined-lists';
+import {Role, User} from '../../shared/models';
 import * as _ from 'lodash';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -14,11 +14,9 @@ export class RegistrationComponent implements OnInit {
   userRolesList: Role[];
   loginForm: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private apiCommunicationService: ApiCommunicationService
-  ) {
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private apiCommunicationService: ApiCommunicationService) {
     this.userRolesList = userRolesList;
   }
 
@@ -67,7 +65,7 @@ export class RegistrationComponent implements OnInit {
       });
   }
 
-  convertFormToModel(): User{
+  convertFormToModel(): User {
     const user = new User();
 
     user.email = this.loginForm.value.email;

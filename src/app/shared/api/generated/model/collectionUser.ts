@@ -11,5 +11,5 @@
  */
 
 
-export interface CollectionUser { 
+export interface CollectionUser {
 }

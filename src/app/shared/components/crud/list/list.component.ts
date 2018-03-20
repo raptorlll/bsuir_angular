@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { GenericCrudService } from '../../../api-services/generic-crud.service';
-import { ConsultantInformation } from '../../../models';
+import {Component, OnInit} from '@angular/core';
+import {GenericCrudService} from '../../../api-services/generic-crud.service';
+import {ConsultantInformation} from '../../../models';
 
 @Component({
   selector: 'app-crud-list',
@@ -26,7 +26,8 @@ export class ListComponent implements OnInit {
 
   items: ConsultantInformation[];
 
-  constructor(private store: GenericCrudService<any, any>) { }
+  constructor(private store: GenericCrudService<any, any>) {
+  }
 
   ngOnInit() {
     this.store.getItems()

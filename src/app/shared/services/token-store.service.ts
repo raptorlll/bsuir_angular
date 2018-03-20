@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { TokenKeys } from '../enums/token-keys.enum';
+import {Injectable} from '@angular/core';
+import {TokenKeys} from '../enums/token-keys.enum';
 
 @Injectable()
 export class TokenStoreService {

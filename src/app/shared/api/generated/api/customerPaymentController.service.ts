@@ -11,353 +11,355 @@
  */
 /* tslint:disable:no-unused-variable member-ordering */
 
-import { Inject, Injectable, Optional }                      from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent }                           from '@angular/common/http';
-import { CustomHttpUrlEncodingCodec }                        from '../encoder';
+import {Inject, Injectable, Optional} from '@angular/core';
+import {
+  HttpClient, HttpHeaders, HttpParams,
+  HttpResponse, HttpEvent
+} from '@angular/common/http';
+import {CustomHttpUrlEncodingCodec} from '../encoder';
 
-import { Observable }                                        from 'rxjs/Observable';
+import {Observable} from 'rxjs/Observable';
 
-import { CollectionCustomerPayment } from '../model/collectionCustomerPayment';
-import { CustomerPayment } from '../model/customerPayment';
-import { ResponseEntityCustomerPayment } from '../model/responseEntityCustomerPayment';
+import {CollectionCustomerPayment} from '../model/collectionCustomerPayment';
+import {CustomerPayment} from '../model/customerPayment';
+import {ResponseEntityCustomerPayment} from '../model/responseEntityCustomerPayment';
 
-import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
-import { Configuration }                                     from '../configuration';
+import {BASE_PATH, COLLECTION_FORMATS} from '../variables';
+import {Configuration} from '../configuration';
 
 
 @Injectable()
 export class CustomerPaymentControllerService {
 
-    protected basePath = 'https://localhost:8086';
-    public defaultHeaders = new HttpHeaders();
-    public configuration = new Configuration();
+  protected basePath = 'https://localhost:8086';
+  public defaultHeaders = new HttpHeaders();
+  public configuration = new Configuration();
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
-        if (basePath) {
-            this.basePath = basePath;
-        }
-        if (configuration) {
-            this.configuration = configuration;
-            this.basePath = basePath || configuration.basePath || this.basePath;
-        }
+  constructor(protected httpClient: HttpClient, @Optional() @Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    if (basePath) {
+      this.basePath = basePath;
+    }
+    if (configuration) {
+      this.configuration = configuration;
+      this.basePath = basePath || configuration.basePath || this.basePath;
+    }
+  }
+
+  /**
+   * @param consumes string[] mime-types
+   * @return true: consumes contains 'multipart/form-data', false: otherwise
+   */
+  private canConsumeForm(consumes: string[]): boolean {
+    const form = 'multipart/form-data';
+    for (let consume of consumes) {
+      if (form === consume) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+
+  /**
+   * deleteItem
+   *
+   * @param id id
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public deleteItemUsingDELETE7(id: number, observe?: 'body', reportProgress?: boolean): Observable<ResponseEntityCustomerPayment>;
+  public deleteItemUsingDELETE7(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResponseEntityCustomerPayment>>;
+  public deleteItemUsingDELETE7(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResponseEntityCustomerPayment>>;
+  public deleteItemUsingDELETE7(id: number, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+    if (id === null || id === undefined) {
+      throw new Error('Required parameter id was null or undefined when calling deleteItemUsingDELETE7.');
     }
 
-    /**
-     * @param consumes string[] mime-types
-     * @return true: consumes contains 'multipart/form-data', false: otherwise
-     */
-    private canConsumeForm(consumes: string[]): boolean {
-        const form = 'multipart/form-data';
-        for (let consume of consumes) {
-            if (form === consume) {
-                return true;
-            }
-        }
-        return false;
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+      '*/*'
+    ];
+    let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
     }
 
+    // to determine the Content-Type header
+    let consumes: string[] = [
+      'application/json'
+    ];
 
-    /**
-     * deleteItem
-     * 
-     * @param id id
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public deleteItemUsingDELETE7(id: number, observe?: 'body', reportProgress?: boolean): Observable<ResponseEntityCustomerPayment>;
-    public deleteItemUsingDELETE7(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResponseEntityCustomerPayment>>;
-    public deleteItemUsingDELETE7(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResponseEntityCustomerPayment>>;
-    public deleteItemUsingDELETE7(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteItemUsingDELETE7.');
-        }
+    return this.httpClient.delete<ResponseEntityCustomerPayment>(`${this.basePath}/customer_payment/${encodeURIComponent(String(id))}`,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress
+      }
+    );
+  }
 
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json'
-        ];
-
-        return this.httpClient.delete<ResponseEntityCustomerPayment>(`${this.basePath}/customer_payment/${encodeURIComponent(String(id))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
+  /**
+   * getItem
+   *
+   * @param id id
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public getItemUsingGET7(id: number, observe?: 'body', reportProgress?: boolean): Observable<CustomerPayment>;
+  public getItemUsingGET7(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CustomerPayment>>;
+  public getItemUsingGET7(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CustomerPayment>>;
+  public getItemUsingGET7(id: number, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+    if (id === null || id === undefined) {
+      throw new Error('Required parameter id was null or undefined when calling getItemUsingGET7.');
     }
 
-    /**
-     * getItem
-     * 
-     * @param id id
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getItemUsingGET7(id: number, observe?: 'body', reportProgress?: boolean): Observable<CustomerPayment>;
-    public getItemUsingGET7(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CustomerPayment>>;
-    public getItemUsingGET7(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CustomerPayment>>;
-    public getItemUsingGET7(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getItemUsingGET7.');
-        }
+    let headers = this.defaultHeaders;
 
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json'
-        ];
-
-        return this.httpClient.get<CustomerPayment>(`${this.basePath}/customer_payment/${encodeURIComponent(String(id))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+      '*/*'
+    ];
+    let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
     }
 
-    /**
-     * getItemsForConversation
-     * 
-     * @param id id
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getItemsForConversationUsingGET(id: number, observe?: 'body', reportProgress?: boolean): Observable<CollectionCustomerPayment>;
-    public getItemsForConversationUsingGET(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CollectionCustomerPayment>>;
-    public getItemsForConversationUsingGET(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CollectionCustomerPayment>>;
-    public getItemsForConversationUsingGET(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getItemsForConversationUsingGET.');
-        }
+    // to determine the Content-Type header
+    let consumes: string[] = [
+      'application/json'
+    ];
 
-        let headers = this.defaultHeaders;
+    return this.httpClient.get<CustomerPayment>(`${this.basePath}/customer_payment/${encodeURIComponent(String(id))}`,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress
+      }
+    );
+  }
 
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json'
-        ];
-
-        return this.httpClient.get<CollectionCustomerPayment>(`${this.basePath}/customer_payment/conversation/${encodeURIComponent(String(id))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
+  /**
+   * getItemsForConversation
+   *
+   * @param id id
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public getItemsForConversationUsingGET(id: number, observe?: 'body', reportProgress?: boolean): Observable<CollectionCustomerPayment>;
+  public getItemsForConversationUsingGET(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CollectionCustomerPayment>>;
+  public getItemsForConversationUsingGET(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CollectionCustomerPayment>>;
+  public getItemsForConversationUsingGET(id: number, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+    if (id === null || id === undefined) {
+      throw new Error('Required parameter id was null or undefined when calling getItemsForConversationUsingGET.');
     }
 
-    /**
-     * getItems
-     * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getItemsUsingGET8(observe?: 'body', reportProgress?: boolean): Observable<CollectionCustomerPayment>;
-    public getItemsUsingGET8(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CollectionCustomerPayment>>;
-    public getItemsUsingGET8(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CollectionCustomerPayment>>;
-    public getItemsUsingGET8(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    let headers = this.defaultHeaders;
 
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json'
-        ];
-
-        return this.httpClient.get<CollectionCustomerPayment>(`${this.basePath}/customer_payment`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+      '*/*'
+    ];
+    let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
     }
 
-    /**
-     * Save availabe items
-     * 
-     * @param information information
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public saveItemUsingPOST7(information: CustomerPayment, observe?: 'body', reportProgress?: boolean): Observable<CustomerPayment>;
-    public saveItemUsingPOST7(information: CustomerPayment, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CustomerPayment>>;
-    public saveItemUsingPOST7(information: CustomerPayment, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CustomerPayment>>;
-    public saveItemUsingPOST7(information: CustomerPayment, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (information === null || information === undefined) {
-            throw new Error('Required parameter information was null or undefined when calling saveItemUsingPOST7.');
-        }
+    // to determine the Content-Type header
+    let consumes: string[] = [
+      'application/json'
+    ];
 
-        let headers = this.defaultHeaders;
+    return this.httpClient.get<CollectionCustomerPayment>(`${this.basePath}/customer_payment/conversation/${encodeURIComponent(String(id))}`,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress
+      }
+    );
+  }
 
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
+  /**
+   * getItems
+   *
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public getItemsUsingGET8(observe?: 'body', reportProgress?: boolean): Observable<CollectionCustomerPayment>;
+  public getItemsUsingGET8(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CollectionCustomerPayment>>;
+  public getItemsUsingGET8(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CollectionCustomerPayment>>;
+  public getItemsUsingGET8(observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
+    let headers = this.defaultHeaders;
 
-        return this.httpClient.post<CustomerPayment>(`${this.basePath}/customer_payment`,
-            information,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+      '*/*'
+    ];
+    let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
     }
 
-    /**
-     * setToken
-     * 
-     * @param tokenParameter tokenParameter
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public setTokenUsingPOST(tokenParameter: string, observe?: 'body', reportProgress?: boolean): Observable<string>;
-    public setTokenUsingPOST(tokenParameter: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<string>>;
-    public setTokenUsingPOST(tokenParameter: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<string>>;
-    public setTokenUsingPOST(tokenParameter: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (tokenParameter === null || tokenParameter === undefined) {
-            throw new Error('Required parameter tokenParameter was null or undefined when calling setTokenUsingPOST.');
-        }
+    // to determine the Content-Type header
+    let consumes: string[] = [
+      'application/json'
+    ];
 
-        let headers = this.defaultHeaders;
+    return this.httpClient.get<CollectionCustomerPayment>(`${this.basePath}/customer_payment`,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress
+      }
+    );
+  }
 
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<string>(`${this.basePath}/customer_payment/save`,
-            tokenParameter,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
+  /**
+   * Save availabe items
+   *
+   * @param information information
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public saveItemUsingPOST7(information: CustomerPayment, observe?: 'body', reportProgress?: boolean): Observable<CustomerPayment>;
+  public saveItemUsingPOST7(information: CustomerPayment, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CustomerPayment>>;
+  public saveItemUsingPOST7(information: CustomerPayment, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CustomerPayment>>;
+  public saveItemUsingPOST7(information: CustomerPayment, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+    if (information === null || information === undefined) {
+      throw new Error('Required parameter information was null or undefined when calling saveItemUsingPOST7.');
     }
 
-    /**
-     * updateItem
-     * 
-     * @param id id
-     * @param information information
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public updateItemUsingPUT7(id: number, information: CustomerPayment, observe?: 'body', reportProgress?: boolean): Observable<CustomerPayment>;
-    public updateItemUsingPUT7(id: number, information: CustomerPayment, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CustomerPayment>>;
-    public updateItemUsingPUT7(id: number, information: CustomerPayment, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CustomerPayment>>;
-    public updateItemUsingPUT7(id: number, information: CustomerPayment, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateItemUsingPUT7.');
-        }
-        if (information === null || information === undefined) {
-            throw new Error('Required parameter information was null or undefined when calling updateItemUsingPUT7.');
-        }
+    let headers = this.defaultHeaders;
 
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json'
-        ];
-        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set("Content-Type", httpContentTypeSelected);
-        }
-
-        return this.httpClient.put<CustomerPayment>(`${this.basePath}/customer_payment/${encodeURIComponent(String(id))}`,
-            information,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+      '*/*'
+    ];
+    let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
     }
+
+    // to determine the Content-Type header
+    let consumes: string[] = [
+      'application/json'
+    ];
+    let httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+    if (httpContentTypeSelected != undefined) {
+      headers = headers.set('Content-Type', httpContentTypeSelected);
+    }
+
+    return this.httpClient.post<CustomerPayment>(`${this.basePath}/customer_payment`,
+      information,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress
+      }
+    );
+  }
+
+  /**
+   * setToken
+   *
+   * @param tokenParameter tokenParameter
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public setTokenUsingPOST(tokenParameter: string, observe?: 'body', reportProgress?: boolean): Observable<string>;
+  public setTokenUsingPOST(tokenParameter: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<string>>;
+  public setTokenUsingPOST(tokenParameter: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<string>>;
+  public setTokenUsingPOST(tokenParameter: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+    if (tokenParameter === null || tokenParameter === undefined) {
+      throw new Error('Required parameter tokenParameter was null or undefined when calling setTokenUsingPOST.');
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+      '*/*'
+    ];
+    let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    let consumes: string[] = [
+      'application/json'
+    ];
+    let httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+    if (httpContentTypeSelected != undefined) {
+      headers = headers.set('Content-Type', httpContentTypeSelected);
+    }
+
+    return this.httpClient.post<string>(`${this.basePath}/customer_payment/save`,
+      tokenParameter,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress
+      }
+    );
+  }
+
+  /**
+   * updateItem
+   *
+   * @param id id
+   * @param information information
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public updateItemUsingPUT7(id: number, information: CustomerPayment, observe?: 'body', reportProgress?: boolean): Observable<CustomerPayment>;
+  public updateItemUsingPUT7(id: number, information: CustomerPayment, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CustomerPayment>>;
+  public updateItemUsingPUT7(id: number, information: CustomerPayment, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CustomerPayment>>;
+  public updateItemUsingPUT7(id: number, information: CustomerPayment, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+    if (id === null || id === undefined) {
+      throw new Error('Required parameter id was null or undefined when calling updateItemUsingPUT7.');
+    }
+    if (information === null || information === undefined) {
+      throw new Error('Required parameter information was null or undefined when calling updateItemUsingPUT7.');
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+      '*/*'
+    ];
+    let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    let consumes: string[] = [
+      'application/json'
+    ];
+    let httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+    if (httpContentTypeSelected != undefined) {
+      headers = headers.set('Content-Type', httpContentTypeSelected);
+    }
+
+    return this.httpClient.put<CustomerPayment>(`${this.basePath}/customer_payment/${encodeURIComponent(String(id))}`,
+      information,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress
+      }
+    );
+  }
 
 }

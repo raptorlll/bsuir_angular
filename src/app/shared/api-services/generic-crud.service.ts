@@ -1,21 +1,20 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs/Observable';
-import { UserControllerService } from '../api/generated';
-import { User } from '../models/user.model';
-import { UserJsonConvertorService } from '../convertors/user-json-convertor.service';
-import { TokenStoreService } from '../services/token-store.service';
-import { TokenKeys } from '../enums/token-keys.enum';
-import { ConvertorInterface } from '../convertors/convertor-interface';
-import { identifierName } from '@angular/compiler';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
+import {Observable} from 'rxjs/Observable';
+import {UserControllerService} from '../api/generated';
+import {User} from '../models/user.model';
+import {UserJsonConvertorService} from '../convertors/user-json-convertor.service';
+import {TokenStoreService} from '../services/token-store.service';
+import {TokenKeys} from '../enums/token-keys.enum';
+import {ConvertorInterface} from '../convertors/convertor-interface';
+import {identifierName} from '@angular/compiler';
 
 
 @Injectable()
-export abstract class GenericCrudService<Model, SwaggerModel>{
-  constructor(
-
-  ) { }
+export abstract class GenericCrudService<Model, SwaggerModel> {
+  constructor() {
+  }
 
   abstract convertor: ConvertorInterface<Model, SwaggerModel>;
 

@@ -9,15 +9,15 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { ConsultantGroup } from './consultantGroup';
-import { User } from './user';
+import {ConsultantGroup} from './consultantGroup';
+import {User} from './user';
 
 
-export interface ConsultantGroupUser { 
-    consultantGroup?: ConsultantGroup;
-    conversationTarif?: number;
-    id?: number;
-    status?: string;
-    user?: User;
-    videoTarif?: number;
+export interface ConsultantGroupUser {
+  consultantGroup?: ConsultantGroup;
+  conversationTarif?: number;
+  id?: number;
+  status?: string;
+  user?: User;
+  videoTarif?: number;
 }

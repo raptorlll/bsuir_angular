@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CurrentUserService } from '../shared/services/current-user.service';
+import {Component, OnInit} from '@angular/core';
+import {CurrentUserService} from '../shared/services/current-user.service';
 
 @Component({
   selector: 'app-main',
@@ -8,18 +8,16 @@ import { CurrentUserService } from '../shared/services/current-user.service';
 export class MainComponent implements OnInit {
   isAuthorised: boolean = false;
 
-  constructor(
-    private currentUserService: CurrentUserService
-  ) {
+  constructor(private currentUserService: CurrentUserService) {
   }
 
   ngOnInit() {
     this.currentUserService
       .isAuthorised
-      .subscribe((isAuth: boolean)=> {
+      .subscribe((isAuth: boolean) => {
         this.isAuthorised = isAuth;
       })
-      ;
+    ;
   }
 
 }

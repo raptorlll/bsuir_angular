@@ -11,9 +11,9 @@
  */
 
 
-export interface SummaryPayments { 
-    date?: Date;
-    messageCount?: number;
-    paymentsCount?: number;
-    sum?: number;
+export interface SummaryPayments {
+  date?: Date;
+  messageCount?: number;
+  paymentsCount?: number;
+  sum?: number;
 }

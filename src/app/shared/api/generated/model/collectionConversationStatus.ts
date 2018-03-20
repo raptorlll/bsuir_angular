@@ -11,5 +11,5 @@
  */
 
 
-export interface CollectionConversationStatus { 
+export interface CollectionConversationStatus {
 }

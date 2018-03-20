@@ -11,5 +11,5 @@
  */
 
 
-export interface CollectionCustomerPayment { 
+export interface CollectionCustomerPayment {
 }

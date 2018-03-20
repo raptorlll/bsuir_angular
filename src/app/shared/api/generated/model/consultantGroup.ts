@@ -11,10 +11,10 @@
  */
 
 
-export interface ConsultantGroup { 
-    conversationTarif?: number;
-    description?: string;
-    id?: number;
-    name?: string;
-    videoTarif?: number;
+export interface ConsultantGroup {
+  conversationTarif?: number;
+  description?: string;
+  id?: number;
+  name?: string;
+  videoTarif?: number;
 }

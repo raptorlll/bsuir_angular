@@ -9,12 +9,12 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { CollectionConversationStatusHistory } from './collectionConversationStatusHistory';
+import {CollectionConversationStatusHistory} from './collectionConversationStatusHistory';
 
 
-export interface ConversationStatus { 
-    conversationStatusHistories?: CollectionConversationStatusHistory;
-    description?: string;
-    id?: number;
-    name?: string;
+export interface ConversationStatus {
+  conversationStatusHistories?: CollectionConversationStatusHistory;
+  description?: string;
+  id?: number;
+  name?: string;
 }

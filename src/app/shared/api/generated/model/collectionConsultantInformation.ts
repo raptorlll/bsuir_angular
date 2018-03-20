@@ -11,5 +11,5 @@
  */
 
 
-export interface CollectionConsultantInformation { 
+export interface CollectionConsultantInformation {
 }

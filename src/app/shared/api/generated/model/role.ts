@@ -11,8 +11,8 @@
  */
 
 
-export interface Role { 
-    description?: string;
-    id?: number;
-    roleName?: string;
+export interface Role {
+  description?: string;
+  id?: number;
+  roleName?: string;
 }

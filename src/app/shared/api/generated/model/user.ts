@@ -9,20 +9,20 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { CollectionConsultantGroupUser } from './collectionConsultantGroupUser';
-import { CollectionCustomerInformation } from './collectionCustomerInformation';
-import { CollectionRole } from './collectionRole';
+import {CollectionConsultantGroupUser} from './collectionConsultantGroupUser';
+import {CollectionCustomerInformation} from './collectionCustomerInformation';
+import {CollectionRole} from './collectionRole';
 
 
-export interface User { 
-    consultantGroupUsersById?: CollectionConsultantGroupUser;
-    customerInformationsById?: CollectionCustomerInformation;
-    email?: string;
-    firstName?: string;
-    id?: number;
-    lastName?: string;
-    password?: string;
-    roles?: CollectionRole;
-    token?: string;
-    username?: string;
+export interface User {
+  consultantGroupUsersById?: CollectionConsultantGroupUser;
+  customerInformationsById?: CollectionCustomerInformation;
+  email?: string;
+  firstName?: string;
+  id?: number;
+  lastName?: string;
+  password?: string;
+  roles?: CollectionRole;
+  token?: string;
+  username?: string;
 }

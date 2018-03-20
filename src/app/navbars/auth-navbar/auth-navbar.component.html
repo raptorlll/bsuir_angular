@@ -2,9 +2,9 @@
   <button routerLink="/" mat-button>
     Home
   </button>
-  <button 
-    [routerLink]="menuItem.route[0]" 
-    *ngFor="let menuItem of menuItems" 
+  <button
+    [routerLink]="menuItem.route[0]"
+    *ngFor="let menuItem of menuItems"
     mat-button>
     {{menuItem.name}}
   </button>

@@ -9,18 +9,18 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { ConsultantGroupUser } from './consultantGroupUser';
-import { Time } from './time';
+import {ConsultantGroupUser} from './consultantGroupUser';
+import {Time} from './time';
 
 
-export interface ConsultantInformation { 
-    availableFrom?: Time;
-    availableUntil?: Time;
-    consultantGroupUser?: ConsultantGroupUser;
-    degree?: string;
-    education?: string;
-    id?: number;
-    licenseFile?: string;
-    licenseNumber?: string;
-    licenseUntil?: string;
+export interface ConsultantInformation {
+  availableFrom?: Time;
+  availableUntil?: Time;
+  consultantGroupUser?: ConsultantGroupUser;
+  degree?: string;
+  education?: string;
+  id?: number;
+  licenseFile?: string;
+  licenseNumber?: string;
+  licenseUntil?: string;
 }

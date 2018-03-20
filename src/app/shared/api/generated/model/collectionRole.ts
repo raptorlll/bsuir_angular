@@ -11,5 +11,5 @@
  */
 
 
-export interface CollectionRole { 
+export interface CollectionRole {
 }

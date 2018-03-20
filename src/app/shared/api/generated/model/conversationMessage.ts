@@ -9,17 +9,17 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Conversation } from './conversation';
-import { Time } from './time';
+import {Conversation} from './conversation';
+import {Time} from './time';
 
 
-export interface ConversationMessage { 
-    attachedFile?: string;
-    conversation?: Conversation;
-    dateTime?: string;
-    id?: number;
-    isConsultantMessage?: string;
-    message?: string;
-    videoDuration?: Time;
-    videoExternalLink?: string;
+export interface ConversationMessage {
+  attachedFile?: string;
+  conversation?: Conversation;
+  dateTime?: string;
+  id?: number;
+  isConsultantMessage?: string;
+  message?: string;
+  videoDuration?: Time;
+  videoExternalLink?: string;
 }

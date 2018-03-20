@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ApiCommunicationService } from '../../shared/api-services/api-communication.service';
-import { Router } from '@angular/router';
-import { CurrentUserService } from '../../shared/services/current-user.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, Validators, FormGroup} from '@angular/forms';
+import {ApiCommunicationService} from '../../shared/api-services/api-communication.service';
+import {Router} from '@angular/router';
+import {CurrentUserService} from '../../shared/services/current-user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +11,11 @@ import { CurrentUserService } from '../../shared/services/current-user.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private currentUserService: CurrentUserService,
-    private apiCommunicationService: ApiCommunicationService
-  ) { }
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private currentUserService: CurrentUserService,
+              private apiCommunicationService: ApiCommunicationService) {
+  }
 
   ngOnInit() {
     this.createForm();

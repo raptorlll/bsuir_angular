@@ -9,12 +9,12 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Conversation } from './conversation';
+import {Conversation} from './conversation';
 
 
-export interface CustomerPayment { 
-    amount?: number;
-    conversation?: Conversation;
-    dataTime?: string;
-    id?: number;
+export interface CustomerPayment {
+  amount?: number;
+  conversation?: Conversation;
+  dataTime?: string;
+  id?: number;
 }

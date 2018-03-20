@@ -9,14 +9,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { ConsultantGroupUser } from './consultantGroupUser';
-import { CustomerInformation } from './customerInformation';
+import {ConsultantGroupUser} from './consultantGroupUser';
+import {CustomerInformation} from './customerInformation';
 
 
-export interface Conversation { 
-    active?: string;
-    consultantGroupUser?: ConsultantGroupUser;
-    customerInformation?: CustomerInformation;
-    id?: number;
-    messagesCount?: number;
+export interface Conversation {
+  active?: string;
+  consultantGroupUser?: ConsultantGroupUser;
+  customerInformation?: CustomerInformation;
+  id?: number;
+  messagesCount?: number;
 }

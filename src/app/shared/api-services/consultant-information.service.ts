@@ -1,20 +1,20 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
+import {Observable} from 'rxjs/Observable';
 import {
   UserControllerService,
   ConsultantInformationControllerService,
   ConsultantInformation as SwaggerConsultantInformation
 } from '../api/generated';
-import { User } from '../models/user.model';
-import { UserJsonConvertorService } from '../convertors/user-json-convertor.service';
-import { TokenStoreService } from '../services/token-store.service';
-import { TokenKeys } from '../enums/token-keys.enum';
-import { GenericCrudService } from './generic-crud.service';
-import { ConsultantInformation } from '../models';
-import { ConsultantInfomationConvertorService } from '../convertors/consultant-information-convertor.service';
-import { ConvertorInterface } from '../convertors/convertor-interface';
+import {User} from '../models/user.model';
+import {UserJsonConvertorService} from '../convertors/user-json-convertor.service';
+import {TokenStoreService} from '../services/token-store.service';
+import {TokenKeys} from '../enums/token-keys.enum';
+import {GenericCrudService} from './generic-crud.service';
+import {ConsultantInformation} from '../models';
+import {ConsultantInfomationConvertorService} from '../convertors/consultant-information-convertor.service';
+import {ConvertorInterface} from '../convertors/convertor-interface';
 
 
 @Injectable()
@@ -23,8 +23,7 @@ export class ConsultantInformationService extends GenericCrudService<ConsultantI
   // convertor: ConvertorInterface<ConsultantInformation, SwaggerConsultantInformation>;
 
   constructor(public convertor: ConsultantInfomationConvertorService,
-    private apiService: ConsultantInformationControllerService
-  ) {
+              private apiService: ConsultantInformationControllerService) {
     super();
   }
 
