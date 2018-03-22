@@ -1,15 +1,21 @@
-import {Component, OnInit, Input, ViewContainerRef, ViewChild, AfterContentInit} from '@angular/core';
-import {CrudViewService} from '../../../services/crud-view.service';
+import {AfterContentInit, Component, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {CrudViewProviderService} from '../../../services/crud-view-provider.service';
+import {CrudViewService} from '../../../services/crud-view.service';
+import {GenericId} from '../../../models';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'list-crud-item',
+  selector: 'crud-view-item',
   template: `
-    <div #container></div>
+    <div>
+      <h2>View of item with id {{item.id}}</h2>
+      <hr />
+      <div #container></div>
+    </div>
   `,
   styles: []
 })
-export class ListItemComponent<T> implements OnInit, AfterContentInit {
+export class ViewComponent<T extends GenericId> implements OnInit, AfterContentInit {
   @Input() item: T;
   @ViewChild('container', {read: ViewContainerRef}) container;
 
@@ -26,5 +32,4 @@ export class ListItemComponent<T> implements OnInit, AfterContentInit {
       this.crudViewProviderService.getListItemComponent(),
       this.item);
   }
-
 }

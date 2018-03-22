@@ -3,11 +3,13 @@ import {CrudViewProviderService} from '../../shared/services/crud-view-provider.
 import {BaseListItem} from '../../shared/components/crud/list-item/base-list-item';
 import {ListItemComponent} from '../components/list-item/list-item.component';
 import {ConsultantInformation} from '../../shared/models';
+import {EditComponent} from '../components/edit/edit.component';
 
 @Injectable()
 export class ConsultantViewProviderService extends CrudViewProviderService<ConsultantInformation> {
+  routeName = () => 'consultant_information';
 
-  getListItemComponent() {
-    return ListItemComponent;
-  }
+  getListItemComponent = () => ListItemComponent;
+
+  getEditItemComponent = () => EditComponent;
 }

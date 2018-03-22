@@ -6,7 +6,7 @@ export class CrudViewService {
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
-  loadComponentView<T>(viewContainerRef: ViewContainerRef, component: BaseListItem<T> | Component, data: T) {
+  loadComponentView<T>(viewContainerRef: ViewContainerRef, component: any, data: T) {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
     viewContainerRef.clear();
 
