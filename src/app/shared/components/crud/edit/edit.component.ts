@@ -9,25 +9,31 @@ import {ActivatedRoute} from '@angular/router';
   template: `
     <div>
       <h2>Edit of item with id {{item.id}}</h2>
-      <hr />
+      <hr/>
       <div #container></div>
     </div>
   `,
   styles: []
 })
 export class EditComponent<T extends GenericId> implements OnInit, AfterContentInit {
-  @Input() item: T;
+  item: T;
   @ViewChild('container', {read: ViewContainerRef}) container;
 
-  constructor(private crudViewService: CrudViewService,
+  constructor(private activatedRoute: ActivatedRoute,
+              private crudViewService: CrudViewService,
               private crudViewProviderService: CrudViewProviderService<T>) {
   }
 
   ngOnInit() {
+    this.activatedRoute
+      .data
+      .subscribe((a) => {
+        this.item = a.item;
+      });
   }
 
   ngAfterContentInit(): void {
-    this.crudViewService.loadComponentView(
+    const component = this.crudViewService.loadComponent(
       this.container,
       this.crudViewProviderService.getEditItemComponent(),
       this.item);

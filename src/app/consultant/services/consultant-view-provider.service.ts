@@ -4,6 +4,7 @@ import {BaseListItem} from '../../shared/components/crud/list-item/base-list-ite
 import {ListItemComponent} from '../components/list-item/list-item.component';
 import {ConsultantInformation} from '../../shared/models';
 import {EditComponent} from '../components/edit/edit.component';
+import {ViewComponent} from '../components/view/view.component';
 
 @Injectable()
 export class ConsultantViewProviderService extends CrudViewProviderService<ConsultantInformation> {
@@ -12,4 +13,6 @@ export class ConsultantViewProviderService extends CrudViewProviderService<Consu
   getListItemComponent = () => ListItemComponent;
 
   getEditItemComponent = () => EditComponent;
+
+  getViewItemComponent = () => ViewComponent;
 }

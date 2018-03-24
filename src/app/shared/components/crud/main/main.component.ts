@@ -32,7 +32,7 @@ export class MainComponent<T> implements OnInit, AfterViewInit, AfterContentInit
   }
 
   ngAfterContentInit(): void {
-    // this.crudViewService.loadComponentView(
+    // this.crudViewService.loadComponent(
     //   this.container,
     //   this.crudViewProviderService.getListItemComponent(),
     //   'text test');

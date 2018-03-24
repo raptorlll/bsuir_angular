@@ -18,11 +18,11 @@ export abstract class GenericCrudService<Model, SwaggerModel> {
 
   abstract convertor: ConvertorInterface<Model, SwaggerModel>;
 
-  abstract getItemServer: (identifier: number) => Observable<SwaggerModel>;
-  abstract getItemsServer: () => Observable<SwaggerModel[]>;
-  abstract deleteItemServer: (identifier: number) => Observable<any>;
-  abstract updateItemServer: (identifier: number, model: SwaggerModel) => Observable<SwaggerModel>;
-  abstract createItemServer: (model: SwaggerModel) => Observable<SwaggerModel>;
+  protected abstract getItemServer: (identifier: number) => Observable<SwaggerModel>;
+  protected abstract getItemsServer: () => Observable<SwaggerModel[]>;
+  protected abstract deleteItemServer: (identifier: number) => Observable<any>;
+  protected abstract updateItemServer: (identifier: number, model: SwaggerModel) => Observable<SwaggerModel>;
+  protected abstract createItemServer: (model: SwaggerModel) => Observable<SwaggerModel>;
 
   getItem: (identifier: number) => Observable<Model> = (identifier: number) => {
     return this.getItemServer(identifier)

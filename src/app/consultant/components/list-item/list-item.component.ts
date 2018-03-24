@@ -5,7 +5,19 @@ import {BaseListItem} from '../../../shared/components/crud/list-item/base-list-
 
 @Component({
   selector: 'consultant-list-item',
-  templateUrl: './list-item.component.html',
+  template: `
+    <div *ngIf="item" class="item-list">
+      <span>availableFrom {{item.availableFrom}} </span>
+      <span>availableUntil {{item.availableUntil}}</span>
+      <span>consultantGroupUser {{item.consultantGroupUser.user.firstName}}</span>
+      <span>degree {{item.degree}}</span>
+      <span>education {{item.education}}</span>
+      <span>id {{item.id}}</span>
+      <span>licenseFile {{item.licenseFile}}</span>
+      <span>licenseNumber {{item.licenseNumber}}</span>
+      <span>licenseUntil {{item.licenseUntil}}</span>
+    </div>
+  `,
   providers: [{provide: BaseListItem, useExisting: forwardRef(() => ListItemComponent)}]
 })
 export class ListItemComponent extends BaseListItem<ConsultantInformation> {

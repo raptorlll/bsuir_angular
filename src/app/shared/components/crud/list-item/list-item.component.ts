@@ -21,7 +21,7 @@ export class ListItemComponent<T> implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    this.crudViewService.loadComponentView(
+    this.crudViewService.loadComponent(
       this.container,
       this.crudViewProviderService.getListItemComponent(),
       this.item);

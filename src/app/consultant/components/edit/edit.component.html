@@ -1,0 +1,51 @@
+<div *ngIf="!!item">
+  <form class="block-center example-form" [formGroup]="form">
+    <mat-card>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="availableFrom" formControlName="availableFrom"/>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="availableUntil" formControlName="availableUntil"/>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="consultantGroupUser" formControlName="consultantGroupUser"/>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="degree" formControlName="degree"/>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="education" formControlName="education"/>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="licenseFile" formControlName="licenseFile"/>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="licenseNumber" formControlName="licenseNumber"/>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="licenseUntil" formControlName="licenseUntil"/>
+        </mat-form-field>
+      </div>
+      <div>
+        <button type="submit" mat-button (click)="submit()">
+          Save
+        </button>
+      </div>
+    </mat-card>
+  </form>
+</div>

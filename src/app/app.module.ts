@@ -44,7 +44,6 @@ import { NotificationComponent } from './shared/components/general/notification.
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-
     ConsultantModule
   ],
   providers: [

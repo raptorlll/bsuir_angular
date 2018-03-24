@@ -5,20 +5,16 @@ import {GenericCrudService} from '../../../shared/api/api-services/generic-crud.
 import {ConsultantInformationService} from '../../../shared/api/api-services/consultant-information.service';
 import {ConsultantViewProviderService} from '../../services/consultant-view-provider.service';
 import {CrudViewProviderService} from '../../../shared/services/crud-view-provider.service';
+import {consultantInformationProviders} from '../../consultant-providers';
 
 @Component({
   selector: 'app-information',
-  templateUrl: './information.component.html',
-  providers: [
-    {
-      provide: GenericCrudService,
-      useExisting: forwardRef(() => ConsultantInformationService)
-    },
-    {
-      provide: CrudViewProviderService,
-      useExisting: forwardRef(() => ConsultantViewProviderService)
-    }
-  ]
+  template: `
+    <app-crud-main>
+      <consultant-list-item></consultant-list-item>
+    </app-crud-main>
+  `,
+  providers: consultantInformationProviders()
 })
 export class InformationComponent implements OnInit {
 

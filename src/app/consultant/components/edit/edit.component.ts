@@ -1,28 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConsultantInformation} from '../../../shared/models';
-import {ActivatedRoute} from '@angular/router';
 import {BaseListItem} from '../../../shared/components/crud/list-item/base-list-item';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {formFieldsGenerator} from '../../../shared/components/generators/formFieldsGenerator';
 
 @Component({
   selector: 'app-view',
-  template: `
-    <crud-edit-item *ngIf="!!item" [item]="item"></crud-edit-item>
-  `,
+  templateUrl: './edit.component.html',
   styles: []
 })
-export class EditComponent extends BaseListItem<ConsultantInformation> implements OnInit{
-
+export class EditComponent extends BaseListItem<ConsultantInformation> implements OnInit {
+  form: FormGroup;
   item: ConsultantInformation;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder) {
     super();
   }
 
   ngOnInit() {
-    this.activatedRoute
-      .data
-      .subscribe((a) => {
-        this.item = a.item;
-      });
+    this.form = this.formBuilder.group(formFieldsGenerator(this.item));
   }
 }

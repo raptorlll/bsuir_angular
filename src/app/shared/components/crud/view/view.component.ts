@@ -16,20 +16,26 @@ import {ActivatedRoute} from '@angular/router';
   styles: []
 })
 export class ViewComponent<T extends GenericId> implements OnInit, AfterContentInit {
-  @Input() item: T;
+  item: T;
   @ViewChild('container', {read: ViewContainerRef}) container;
 
-  constructor(private crudViewService: CrudViewService,
+  constructor(private activatedRoute: ActivatedRoute,
+              private crudViewService: CrudViewService,
               private crudViewProviderService: CrudViewProviderService<T>) {
   }
 
   ngOnInit() {
+    this.activatedRoute
+      .data
+      .subscribe((a) => {
+        this.item = a.item;
+      });
   }
 
   ngAfterContentInit(): void {
-    this.crudViewService.loadComponentView(
+    this.crudViewService.loadComponent(
       this.container,
-      this.crudViewProviderService.getListItemComponent(),
+      this.crudViewProviderService.getViewItemComponent(),
       this.item);
   }
 }

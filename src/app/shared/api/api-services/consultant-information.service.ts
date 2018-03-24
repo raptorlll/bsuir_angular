@@ -28,9 +28,9 @@ export class ConsultantInformationService extends GenericCrudService<ConsultantI
   }
 
 
-  getItemServer = (identifier: number) => this.apiService.getItemUsingGET2(identifier);
-  getItemsServer = () => <Observable<SwaggerConsultantInformation[]>>this.apiService.getItemsUsingGET2();
-  deleteItemServer = (identifier: number) => this.apiService.deleteItemUsingDELETE2(identifier);
-  updateItemServer = (identifier: number, model: any) => this.apiService.updateItemUsingPUT2(identifier, model);
-  createItemServer = (model: any) => this.apiService.saveClientInformationWithFileUsingPOST(model);
+  protected getItemServer = (identifier: number) => this.apiService.getItemUsingGET2(identifier);
+  protected getItemsServer = () => <Observable<SwaggerConsultantInformation[]>>this.apiService.getItemsUsingGET2();
+  protected deleteItemServer = (identifier: number) => this.apiService.deleteItemUsingDELETE2(identifier);
+  protected updateItemServer = (identifier: number, model: any) => this.apiService.updateItemUsingPUT2(identifier, model);
+  protected createItemServer = (model: any) => this.apiService.saveClientInformationWithFileUsingPOST(model);
 }
