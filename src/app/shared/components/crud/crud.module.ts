@@ -8,6 +8,7 @@ import {MaterialModule} from '../../material/material.module';
 import {RouterModule} from '@angular/router';
 import {ViewComponent} from './view/view.component';
 import {EditComponent} from './edit/edit.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import {EditComponent} from './edit/edit.component';
     ListItemComponent,
     ListItemButtonsComponent,
     ViewComponent,
-    EditComponent
+    EditComponent,
+    FooterComponent
   ],
   exports: [
     MainComponent,

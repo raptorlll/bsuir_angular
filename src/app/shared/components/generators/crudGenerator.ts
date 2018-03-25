@@ -28,9 +28,12 @@ export const crudRoutes = (resolver): Routes => {
     },
     {
       path: 'create',
-      component: ViewComponent,
+      component: EditComponent,
       data: {
         type: Page.Type.CREATE
+      },
+      resolve: {
+        item: resolver
       }
     },
     {

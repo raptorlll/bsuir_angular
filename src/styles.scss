@@ -21,12 +21,23 @@ body {
     width: 100%;
   }
 }
-.padding-small{
+
+.padding-small {
 
 }
+
 .separator {
   padding: 20px 0;
 }
-.full-width{
+
+.full-width {
+  width: 100%;
+}
+
+footer {
+  top: calc(100vh - 50px);
+  display: block;
+  position: absolute;
+  height: 50px;
   width: 100%;
 }

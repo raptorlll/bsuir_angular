@@ -1,6 +1,8 @@
-<button mat-button [matMenuTriggerFor]="menu">Options</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item [routerLink]="['/', routeName, item.id]">Read</button>
-  <button mat-menu-item [routerLink]="['/', routeName, 'edit', item.id]">Edit</button>
-  <button mat-menu-item (click)="onDelete()">Delete</button>
-</mat-menu>
+<div (click)="$event.stopPropagation()">
+  <button mat-button [matMenuTriggerFor]="menu">Options</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/', routeName, item.id]">Read</button>
+    <button mat-menu-item [routerLink]="['/', routeName, 'edit', item.id]">Edit</button>
+    <button mat-menu-item (click)="onDelete()">Delete</button>
+  </mat-menu>
+</div>

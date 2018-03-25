@@ -32,11 +32,12 @@ export class EditComponent<T extends GenericId> implements OnInit, AfterContentI
       .data
       .subscribe((a) => {
         this.item = a.item;
+        this.ngAfterContentInit();
       });
   }
 
   ngAfterContentInit(): void {
-    const component = this.crudViewService.loadComponent(
+    this.crudViewService.loadComponent(
       this.container,
       this.crudViewProviderService.getEditItemComponent(),
       this.item);

@@ -10,7 +10,13 @@ export class ConsultantResolverService implements Resolve<ConsultantInformation>
 
   resolve(route: ActivatedRouteSnapshot): Promise<ConsultantInformation> {
     return new Promise<ConsultantInformation>((res, rej) => {
-      return this.dataService.getItem(Number.parseInt(route.paramMap.get('id')))
+      /** New item creation */
+      if (!route.paramMap.has('id')) {
+        res(new ConsultantInformation());
+        return;
+      }
+
+      this.dataService.getItem(Number.parseInt(route.paramMap.get('id')))
         .subscribe((a) => {
           res(a);
         });
