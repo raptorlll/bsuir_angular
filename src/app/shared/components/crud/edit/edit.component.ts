@@ -7,11 +7,14 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'crud-edit-item',
   template: `
-    <div>
-      <h2>Edit of item with id {{item.id}}</h2>
-      <hr/>
-      <div #container></div>
-    </div>
+    <mat-card>
+      <mat-card-header>
+        Edit of item with id {{item.id}}
+      </mat-card-header>
+      <mat-card-content>
+        <div #container></div>
+      </mat-card-content>
+    </mat-card>
   `,
   styles: []
 })

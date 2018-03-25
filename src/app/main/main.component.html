@@ -1,5 +1,7 @@
-<app-preloader></app-preloader>
-<app-guest-navbar *ngIf="!isAuthorised"></app-guest-navbar>
-<app-auth-navbar *ngIf="isAuthorised"></app-auth-navbar>
+<bootstrap-grid>
+  <app-preloader></app-preloader>
+  <app-guest-navbar *ngIf="!isAuthorised"></app-guest-navbar>
+  <app-auth-navbar *ngIf="isAuthorised"></app-auth-navbar>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</bootstrap-grid>

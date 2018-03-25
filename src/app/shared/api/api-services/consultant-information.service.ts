@@ -33,4 +33,8 @@ export class ConsultantInformationService extends GenericCrudService<ConsultantI
   protected deleteItemServer = (identifier: number) => this.apiService.deleteItemUsingDELETE2(identifier);
   protected updateItemServer = (identifier: number, model: any) => this.apiService.updateItemUsingPUT2(identifier, model);
   protected createItemServer = (model: any) => this.apiService.saveClientInformationWithFileUsingPOST(model);
+
+  public updateItemWithFile = (model: any, file: File) => this.apiService
+    .saveClientInformationWithFileUsingPOST(JSON.stringify(this.convertor.convertToSwagger(model)), file)
+    .map((modelIn: SwaggerConsultantInformation) => this.convertor.convertFromSwagger(modelIn));
 }

@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class UserJsonConvertorService implements ConvertorInterface<User, SwaggerUserJson> {
-  convertToSwagger(model: User): SwaggerUserJson {
+  convertToSwagger = (model: User): SwaggerUserJson => {
     const modelOut: SwaggerUserJson = {};
 
     modelOut.email = model.email;
@@ -19,9 +19,9 @@ export class UserJsonConvertorService implements ConvertorInterface<User, Swagge
     modelOut.username = model.username;
 
     return modelOut;
-  }
+  };
 
-  convertFromSwagger(model: SwaggerUserJson): User {
+  convertFromSwagger = (model: SwaggerUserJson): User => {
     const modelOut: User = new User();
 
     modelOut.email = model.email;
@@ -33,5 +33,5 @@ export class UserJsonConvertorService implements ConvertorInterface<User, Swagge
     modelOut.username = model.username;
 
     return modelOut;
-  }
+  };
 }

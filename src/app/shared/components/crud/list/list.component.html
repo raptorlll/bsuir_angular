@@ -1,6 +1,16 @@
-<div class="crud-items-list">
-  <div class="crud-item" *ngFor="let item of items">
-    <list-crud-item class="list-item-content" [item]="item"></list-crud-item>
-    <crud-list-item-buttons class="list-item-buttons" [item]="item"></crud-list-item-buttons>
-  </div>
-</div>
+<mat-card>
+  <mat-list>
+    <div
+      *ngFor="let item of items; let i = index">
+      <mat-list-item
+        [routerLink]="['/', routeName, item.id]"
+        [style.paddingTop]="'10px'"
+        [style.paddingBottom]="'10px'"
+        [style.height]="'auto'">
+        <list-crud-item [item]="item"></list-crud-item>
+        <crud-list-item-buttons [item]="item"></crud-list-item-buttons>
+      </mat-list-item>
+      <mat-divider class="padding-small" *ngIf="items.length-1!==i"></mat-divider>
+    </div>
+  </mat-list>
+</mat-card>

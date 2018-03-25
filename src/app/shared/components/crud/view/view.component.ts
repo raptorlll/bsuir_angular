@@ -7,11 +7,17 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'crud-view-item',
   template: `
-    <div>
-      <h2>View of item with id {{item.id}}</h2>
-      <hr />
-      <div #container></div>
-    </div>
+    <mat-card>
+      <mat-card-header>
+        View of item with id {{item.id}}
+      </mat-card-header>
+      <div class="separator">
+        <mat-divider></mat-divider>
+      </div>
+      <mat-card-content>
+        <div #container></div>
+      </mat-card-content>
+    </mat-card>
   `,
   styles: []
 })
@@ -29,6 +35,7 @@ export class ViewComponent<T extends GenericId> implements OnInit, AfterContentI
       .data
       .subscribe((a) => {
         this.item = a.item;
+        this.ngAfterContentInit();
       });
   }
 

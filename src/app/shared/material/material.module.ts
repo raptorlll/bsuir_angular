@@ -6,9 +6,14 @@ import {
   MatIconModule,
   MatCardModule,
   MatSelectModule,
-  MatInputModule
+  MatInputModule,
+  MatDividerModule,
+  MatListModule,
+  MatGridListModule
 } from '@angular/material';
 
+/** Add also bootstrap module for very primitive usage */
+import { BootstrapGridModule } from 'ng2-bootstrap-grid';
 
 @NgModule({
   imports: [
@@ -18,7 +23,11 @@ import {
     MatIconModule,
     MatCardModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatDividerModule,
+    MatListModule,
+    MatGridListModule,
+    BootstrapGridModule
   ],
   exports: [
     MatButtonModule,
@@ -27,7 +36,11 @@ import {
     MatIconModule,
     MatCardModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatDividerModule,
+    MatListModule,
+    MatGridListModule,
+    BootstrapGridModule
   ]
 })
 export class MaterialModule {

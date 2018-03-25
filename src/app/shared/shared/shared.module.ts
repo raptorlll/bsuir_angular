@@ -16,6 +16,7 @@ import {CrudModule} from '../components/crud/crud.module';
 import {CrudViewService} from '../services/crud-view.service';
 import {PreloaderService} from '../services/preloader.service';
 import {NotificationService} from '../services/notification.service';
+import {ConsultantGroupUserService} from '../api/api-services/consultant-group-user.service';
 
 export const BasePathEnv = {provide: BASE_PATH, useValue: environment.api_location};
 
@@ -41,6 +42,7 @@ export const BasePathEnv = {provide: BASE_PATH, useValue: environment.api_locati
     GuestGuard,
     ApiCommunicationService,
     ConsultantInformationService,
+    ConsultantGroupUserService,
     NavbarService,
     PreloaderService,
     NotificationService

@@ -1,28 +1,10 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6">
-      <app-crud-list>
-
-      </app-crud-list>
-    </div>
-    <div class="col-sm-6">
+<container>
+  <row>
+    <column sm="6">
+      <app-crud-list></app-crud-list>
+    </column>
+    <column sm="6">
       <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>
-
-
-
-<!--<ng-content></ng-content>-->
-<!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-<!--<ng-template ngFor let-city [ngForOf]="listItem">-->
-<!--<br/>={{city.name}}= {{city}}-->
-<!--</ng-template>-->
-<!--№№№№-->
-<!--{{list}}-->
-<!--======-->
-
-<!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-<!--<ng-content select=".tt"></ng-content>-->
-<!--++++++++++-->
-<!--<div #container></div>-->
+    </column>
+  </row>
+</container>

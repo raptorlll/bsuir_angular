@@ -3,6 +3,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {UserConvertorService} from './user-convertor.service';
 import {UserJsonConvertorService} from './user-json-convertor.service';
+import {ConsultantGroupConvertorService} from './consultant-group-convertor.service';
+import {ConsultantGroupUserConvertorService} from './consultant-group-user-convertor.service';
 
 @NgModule({
   imports: [
@@ -11,7 +13,9 @@ import {UserJsonConvertorService} from './user-json-convertor.service';
   providers: [
     UserConvertorService,
     UserJsonConvertorService,
-    ConsultantInfomationConvertorService
+    ConsultantInfomationConvertorService,
+    ConsultantGroupConvertorService,
+    ConsultantGroupUserConvertorService
   ]
 })
 export class ConvertorsModule {

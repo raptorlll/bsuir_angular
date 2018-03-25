@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GenericCrudService} from '../../../api/api-services/generic-crud.service';
 import {ConsultantInformation} from '../../../models';
+import {CrudViewProviderService} from '../../../services/crud-view-provider.service';
 
 @Component({
   selector: 'app-crud-list',
@@ -23,10 +24,12 @@ import {ConsultantInformation} from '../../../models';
   `]
 })
 export class ListComponent implements OnInit {
-
   items: ConsultantInformation[];
+  private routeName: string;
 
-  constructor(private store: GenericCrudService<any, any>) {
+  constructor(private store: GenericCrudService<any, any>,
+              private crudViewProviderService: CrudViewProviderService<ConsultantInformation>) {
+      this.routeName = crudViewProviderService.routeName();
   }
 
   ngOnInit() {
