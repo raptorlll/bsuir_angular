@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Page} from '../../generators/crudGenerator';
+import {Page} from '../../generators/crudPage';
 import {ActivatedRoute} from '@angular/router';
 import * as _ from 'lodash';
 import {CrudViewProviderService} from '../../../services/crud-view-provider.service';

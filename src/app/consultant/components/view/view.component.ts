@@ -22,5 +22,4 @@ import {BaseListItem} from '../../../shared/components/crud/list-item/base-list-
   styles: []
 })
 export class ViewComponent extends BaseListItem<ConsultantInformation> {
-
 }

@@ -9,6 +9,9 @@ import {RouterModule} from '@angular/router';
 import {ViewComponent} from './view/view.component';
 import {EditComponent} from './edit/edit.component';
 import { FooterComponent } from './footer/footer.component';
+import {DateInputDirective} from '../../directives/date-input.directive';
+import {DateTimeInputDirective} from '../../directives/date-time-input.directive';
+import {TimeInputDirective} from '../../directives/time-input.directive';
 
 @NgModule({
   imports: [
@@ -23,12 +26,18 @@ import { FooterComponent } from './footer/footer.component';
     ListItemButtonsComponent,
     ViewComponent,
     EditComponent,
-    FooterComponent
+    FooterComponent,
+    DateInputDirective,
+    DateTimeInputDirective,
+    TimeInputDirective
   ],
   exports: [
     MainComponent,
     ViewComponent,
-    EditComponent
+    EditComponent,
+    DateInputDirective,
+    DateTimeInputDirective,
+    TimeInputDirective
   ]
 })
 export class CrudModule {

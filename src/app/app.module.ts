@@ -21,6 +21,9 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ConsultantModule} from './consultant/consultant.module';
 import {PreloaderComponent} from './shared/components/general/preloader.component';
 import { NotificationComponent } from './shared/components/general/notification.component';
+import { DateInputDirective } from './shared/directives/date-input.directive';
+import { DateTimeInputDirective } from './shared/directives/date-time-input.directive';
+import { TimeInputDirective } from './shared/directives/time-input.directive';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { NotificationComponent } from './shared/components/general/notification.
     AuthNavbarComponent,
     HomeComponent,
     PreloaderComponent,
-    NotificationComponent
+    NotificationComponent,
+
   ],
   imports: [
     RoutingModule,

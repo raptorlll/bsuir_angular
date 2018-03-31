@@ -1,16 +1,16 @@
-<div *ngIf="!!item">
+<div *ngIf="!!item && !!form">
   <div class="separator">
     <mat-divider></mat-divider>
   </div>
   <form [formGroup]="form">
     <div>
       <mat-form-field class="full-width">
-        <input matInput placeholder="availableFrom" formControlName="availableFrom"/>
+        <input matInput placeholder="availableFrom" formControlName="availableFrom" timeInput/>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="full-width">
-        <input matInput placeholder="availableUntil" formControlName="availableUntil"/>
+        <input matInput placeholder="availableUntil" formControlName="availableUntil" timeInput/>
       </mat-form-field>
     </div>
     <div>
@@ -39,8 +39,7 @@
         <img [src]="url" class="preview" alt="" />
         <input #fileInput
                type="file"
-               placeholder="licenseFile"
-               formControlName="licenseFile"
+               name="file"
                (change)="onFileInput($event)"
                style="display:none;" />
       </button>
@@ -52,7 +51,7 @@
     </div>
     <div>
       <mat-form-field class="full-width">
-        <input matInput placeholder="licenseUntil" formControlName="licenseUntil"/>
+        <input matInput placeholder="licenseUntil" formControlName="licenseUntil" dateInput/>
       </mat-form-field>
     </div>
     <mat-card-actions>

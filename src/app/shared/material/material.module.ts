@@ -9,7 +9,8 @@ import {
   MatInputModule,
   MatDividerModule,
   MatListModule,
-  MatGridListModule
+  MatGridListModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 /** Add also bootstrap module for very primitive usage */
@@ -27,7 +28,8 @@ import { BootstrapGridModule } from 'ng2-bootstrap-grid';
     MatDividerModule,
     MatListModule,
     MatGridListModule,
-    BootstrapGridModule
+    BootstrapGridModule,
+    MatSnackBarModule
   ],
   exports: [
     MatButtonModule,
@@ -40,7 +42,8 @@ import { BootstrapGridModule } from 'ng2-bootstrap-grid';
     MatDividerModule,
     MatListModule,
     MatGridListModule,
-    BootstrapGridModule
+    BootstrapGridModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule {

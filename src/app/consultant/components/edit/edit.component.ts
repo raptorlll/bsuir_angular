@@ -1,6 +1,6 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {ConsultantInformation} from '../../../shared/models';
-import {BaseListItem} from '../../../shared/components/crud/list-item/base-list-item';
+import {BaseListItemEdit} from '../../../shared/components/crud/list-item/base-list-item';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {formFieldsGenerator} from '../../../shared/components/generators/formFieldsGenerator';
 import {environment} from '../../../../environments/environment';
@@ -10,6 +10,8 @@ import * as _ from 'lodash';
 import {itemFieldsAssign} from '../../../shared/components/generators/itemFieldsAssign';
 import {ConsultantInformationService} from '../../../shared/api/api-services/consultant-information.service';
 import {Observable} from 'rxjs/Observable';
+import {ActivatedRoute} from '@angular/router';
+import {Page} from '../../../shared/components/generators/crudPage';
 
 @Component({
   selector: 'app-view',
@@ -21,12 +23,13 @@ import {Observable} from 'rxjs/Observable';
     }
   `]
 })
-export class EditComponent extends BaseListItem<ConsultantInformation> implements OnInit {
+export class EditComponent extends BaseListItemEdit<ConsultantInformation> implements OnInit {
   form: FormGroup;
   item: ConsultantInformation;
   url: string;
   consultantGroupUsers: ConsultantGroupUser[];
   file: File;
+  savedEvent: EventEmitter<ConsultantInformation> = new EventEmitter<ConsultantInformation>();
 
   constructor(private formBuilder: FormBuilder,
               private consultantGroupUserService: ConsultantGroupUserService,
@@ -56,12 +59,31 @@ export class EditComponent extends BaseListItem<ConsultantInformation> implement
       .subscribe((data: ConsultantInformation) => {
         this.item = data;
         this.createForm(this.item);
-        console.log('Updated', data);
+        /** Trigger event up*/
+        this.savedEvent.emit(data);
       });
   }
 
   createForm(item) {
-    const controlsConfig = formFieldsGenerator(item);
+    const getItemStub = item => {
+      if (!item.id) {
+        return {
+          availableFrom: '',
+          availableUntil: '',
+          consultantGroupUser: '',
+          degree: '',
+          education: '',
+          id: '',
+          licenseFile: '',
+          licenseNumber: '',
+          licenseUntil: '',
+        };
+      } else {
+        return item;
+      }
+    };
+
+    const controlsConfig = formFieldsGenerator(getItemStub(item));
     controlsConfig['consultantGroupUser'] = [
       _.result(this, 'item.consultantGroupUser.id', ''),
       [

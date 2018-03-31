@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import NotificationMessage = Notification.NotificationMessage;
+import {MatSnackBar} from '@angular/material';
 
 export namespace Notification {
   export type Type = 'ERROR' | 'NOTIFICATION' | 'WARNING';
@@ -26,12 +27,18 @@ export class NotificationService {
   private notificationsSubject = new BehaviorSubject<NotificationMessage[]>([]);
   notifications = this.notificationsSubject.asObservable();
 
-  constructor() {
+  constructor(public snackBar: MatSnackBar) {
   }
 
   addNotification(message: NotificationMessage) {
     const notificationMessages = <NotificationMessage[]> this.notificationsSubject.getValue();
     notificationMessages.push(message)
     this.notificationsSubject.next(notificationMessages);
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+    });
   }
 }

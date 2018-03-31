@@ -1,21 +1,10 @@
-import {Resolve, Routes} from '@angular/router';
+import {Routes} from '@angular/router';
 import {ViewComponent} from '../crud/view/view.component';
 import {EditComponent} from '../crud/edit/edit.component';
-
-export namespace Page {
-  export enum Type {VIEW, EDIT, CREATE, HOME}
-}
-
+import {Page} from './crudPage';
 
 export const crudRoutes = (resolver): Routes => {
   return [
-    // {
-    //   path: '',
-    //   component: ,
-    //   data: {
-    //     type: Page.Type.HOME
-    //   }
-    // },
     {
       path: 'edit/:id',
       component: EditComponent,
