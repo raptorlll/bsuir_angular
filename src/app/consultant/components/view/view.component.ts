@@ -17,7 +17,6 @@ import {BaseListItem} from '../../../shared/components/crud/list-item/base-list-
       <span>licenseNumber {{item.licenseNumber}}</span>
       <span>licenseUntil {{item.licenseUntil}}</span>
     </div>
-
   `,
   styles: []
 })

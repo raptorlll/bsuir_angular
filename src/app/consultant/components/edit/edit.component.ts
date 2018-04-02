@@ -10,8 +10,6 @@ import * as _ from 'lodash';
 import {itemFieldsAssign} from '../../../shared/components/generators/itemFieldsAssign';
 import {ConsultantInformationService} from '../../../shared/api/api-services/consultant-information.service';
 import {Observable} from 'rxjs/Observable';
-import {ActivatedRoute} from '@angular/router';
-import {Page} from '../../../shared/components/generators/crudPage';
 
 @Component({
   selector: 'app-view',
@@ -30,6 +28,17 @@ export class EditComponent extends BaseListItemEdit<ConsultantInformation> imple
   consultantGroupUsers: ConsultantGroupUser[];
   file: File;
   savedEvent: EventEmitter<ConsultantInformation> = new EventEmitter<ConsultantInformation>();
+  fieldsList = {
+    availableFrom: '',
+    availableUntil: '',
+    consultantGroupUser: '',
+    degree: '',
+    education: '',
+    id: '',
+    licenseFile: '',
+    licenseNumber: '',
+    licenseUntil: '',
+  };
 
   constructor(private formBuilder: FormBuilder,
               private consultantGroupUserService: ConsultantGroupUserService,
@@ -46,15 +55,27 @@ export class EditComponent extends BaseListItemEdit<ConsultantInformation> imple
     this.createForm(this.item);
   }
 
+  saveItem(item: ConsultantInformation, saveItem) {
+    if (!!item.id) {
+      return this.consultantInformationService.updateItem(item.id, saveItem);
+    } else {
+      return this.consultantInformationService.createItem(saveItem);
+    }
+  }
+
   submit() {
-    const saveItem = itemFieldsAssign<ConsultantInformation>(_.cloneDeep(this.item), this.form);
+    const saveItem = itemFieldsAssign<ConsultantInformation>(this.getItemStub(this.item), this.form);
     saveItem.consultantGroupUser = _.find(this.consultantGroupUsers, {id: this.form.value.consultantGroupUser});
 
     Observable.if(() => !!this.file,
       this.consultantInformationService
-        .updateItemWithFile(saveItem, this.file),
-      this.consultantInformationService
-        .updateItem(this.item.id, saveItem)
+        .updateItemWithFile(saveItem, this.file)
+        .do((savedElement: ConsultantInformation) => {
+          if (!this.item.id) {
+            this.consultantInformationService.addToItems(savedElement);
+          }
+        }),
+      this.saveItem(this.item, saveItem)
     )
       .subscribe((data: ConsultantInformation) => {
         this.item = data;
@@ -64,26 +85,16 @@ export class EditComponent extends BaseListItemEdit<ConsultantInformation> imple
       });
   }
 
-  createForm(item) {
-    const getItemStub = item => {
-      if (!item.id) {
-        return {
-          availableFrom: '',
-          availableUntil: '',
-          consultantGroupUser: '',
-          degree: '',
-          education: '',
-          id: '',
-          licenseFile: '',
-          licenseNumber: '',
-          licenseUntil: '',
-        };
-      } else {
-        return item;
-      }
-    };
+  getItemStub = itemInner => {
+    if (!itemInner.id) {
+      return this.fieldsList;
+    } else {
+      return itemInner;
+    }
+  };
 
-    const controlsConfig = formFieldsGenerator(getItemStub(item));
+  createForm(item) {
+    const controlsConfig = formFieldsGenerator(this.getItemStub(item));
     controlsConfig['consultantGroupUser'] = [
       _.result(this, 'item.consultantGroupUser.id', ''),
       [
@@ -101,8 +112,8 @@ export class EditComponent extends BaseListItemEdit<ConsultantInformation> imple
       this.file = event.target.files[0];
       const reader = new FileReader();
 
-      reader.onload = (event: any) => {
-        this.url = event.target.result;
+      reader.onload = (eventInner: any) => {
+        this.url = eventInner.target.result;
       };
 
       reader.readAsDataURL(event.target.files[0]);

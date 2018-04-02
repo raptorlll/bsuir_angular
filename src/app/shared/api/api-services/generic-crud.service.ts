@@ -1,14 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../../../environments/environment';
 import {Observable} from 'rxjs/Observable';
-import {UserControllerService} from '../generated/index';
-import {User} from '../../models/user.model';
-import {UserJsonConvertorService} from '../../convertors/user-json-convertor.service';
-import {TokenStoreService} from '../../services/token-store.service';
-import {TokenKeys} from '../../enums/token-keys.enum';
 import {ConvertorInterface} from '../../convertors/convertor-interface';
-import {identifierName} from '@angular/compiler';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import * as _ from 'lodash';
 import {GenericId} from '../../models';
@@ -31,7 +23,7 @@ export abstract class GenericCrudService<Model extends GenericId, SwaggerModel> 
   getItem: (identifier: number) => Observable<Model> = (identifier: number) => {
     return this.getItemServer(identifier)
       .map((model: SwaggerModel) => this.convertor.convertFromSwagger(model));
-      // .do(this.replaceFromItems);
+    // .do(this.replaceFromItems);
   };
 
   getItems: () => Observable<Model[]> = () => {
@@ -57,7 +49,7 @@ export abstract class GenericCrudService<Model extends GenericId, SwaggerModel> 
       .do(this.replaceFromItems);
   };
 
-  createItem: (identifier: number, model: Model) => Observable<Model> = (identifier: number, model: Model) => {
+  createItem: (model: Model) => Observable<Model> = (model: Model) => {
     return this.createItemServer(this.convertor.convertToSwagger(model))
       .map((modelIn: SwaggerModel) => this.convertor.convertFromSwagger(modelIn))
       .do(this.addToItems);
@@ -79,6 +71,7 @@ export abstract class GenericCrudService<Model extends GenericId, SwaggerModel> 
   };
 
   addToItems = (item: Model): void => {
+    // debugger;
     const values = this.items.getValue();
     values.push(item);
     this.items.next(values);
