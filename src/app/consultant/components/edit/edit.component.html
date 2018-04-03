@@ -5,17 +5,17 @@
   <form [formGroup]="form">
     <div>
       <mat-form-field class="full-width">
-        <input matInput placeholder="availableFrom" formControlName="availableFrom" timeInput/>
+        <input matInput [placeholder]="label('availableFrom')" formControlName="availableFrom" timeInput/>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="full-width">
-        <input matInput placeholder="availableUntil" formControlName="availableUntil" timeInput/>
+        <input matInput [placeholder]="label('availableUntil')" formControlName="availableUntil" timeInput/>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="full-width">
-        <mat-select formControlName="consultantGroupUser">
+        <mat-select formControlName="consultantGroupUser" [placeholder]="label('consultantGroupUser')">
           <mat-option *ngFor="let consultantGroupUser of consultantGroupUsers" [value]="consultantGroupUser.id">
             {{consultantGroupUser.user.firstName}} {{consultantGroupUser.consultantGroup.name}}
           </mat-option>
@@ -24,12 +24,12 @@
     </div>
     <div>
       <mat-form-field class="full-width">
-        <input matInput placeholder="degree" formControlName="degree"/>
+        <input matInput [placeholder]="label('degree')" formControlName="degree"/>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="full-width">
-        <input matInput placeholder="education" formControlName="education"/>
+        <input matInput [placeholder]="label('education')" formControlName="education"/>
       </mat-form-field>
     </div>
     <div>
@@ -46,12 +46,12 @@
     </div>
     <div>
       <mat-form-field class="full-width">
-        <input matInput placeholder="licenseNumber" formControlName="licenseNumber"/>
+        <input matInput [placeholder]="label('licenseNumber')" formControlName="licenseNumber"/>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="full-width">
-        <input matInput placeholder="licenseUntil" formControlName="licenseUntil" dateInput/>
+        <input matInput [placeholder]="label('licenseUntil')" formControlName="licenseUntil" dateInput/>
       </mat-form-field>
     </div>
     <mat-card-actions>

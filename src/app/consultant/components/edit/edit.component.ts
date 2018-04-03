@@ -2,14 +2,13 @@ import {Component, EventEmitter, OnInit} from '@angular/core';
 import {ConsultantInformation} from '../../../shared/models';
 import {BaseListItemEdit} from '../../../shared/components/crud/list-item/base-list-item';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {formFieldsGenerator} from '../../../shared/components/generators/formFieldsGenerator';
 import {environment} from '../../../../environments/environment';
 import {ConsultantGroupUserService} from '../../../shared/api/api-services/consultant-group-user.service';
 import {ConsultantGroupUser} from '../../../shared/models/consultant-group-user.model';
 import * as _ from 'lodash';
-import {itemFieldsAssign} from '../../../shared/components/generators/itemFieldsAssign';
 import {ConsultantInformationService} from '../../../shared/api/api-services/consultant-information.service';
 import {Observable} from 'rxjs/Observable';
+import {FieldsHelperService} from '../../../shared/services/fields-helper.service';
 
 @Component({
   selector: 'app-view',
@@ -28,23 +27,15 @@ export class EditComponent extends BaseListItemEdit<ConsultantInformation> imple
   consultantGroupUsers: ConsultantGroupUser[];
   file: File;
   savedEvent: EventEmitter<ConsultantInformation> = new EventEmitter<ConsultantInformation>();
-  fieldsList = {
-    availableFrom: '',
-    availableUntil: '',
-    consultantGroupUser: '',
-    degree: '',
-    education: '',
-    id: '',
-    licenseFile: '',
-    licenseNumber: '',
-    licenseUntil: '',
-  };
 
   constructor(private formBuilder: FormBuilder,
               private consultantGroupUserService: ConsultantGroupUserService,
-              private consultantInformationService: ConsultantInformationService) {
+              private consultantInformationService: ConsultantInformationService,
+              private fieldsFactoryService: FieldsHelperService) {
     super();
   }
+
+  label = this.fieldsFactoryService.getLabel;
 
   ngOnInit() {
     this.consultantGroupUserService.getItems()
@@ -64,7 +55,7 @@ export class EditComponent extends BaseListItemEdit<ConsultantInformation> imple
   }
 
   submit() {
-    const saveItem = itemFieldsAssign<ConsultantInformation>(this.getItemStub(this.item), this.form);
+    const saveItem = this.fieldsFactoryService.itemFieldsAssign<ConsultantInformation>(this.item, this.form);
     saveItem.consultantGroupUser = _.find(this.consultantGroupUsers, {id: this.form.value.consultantGroupUser});
 
     Observable.if(() => !!this.file,
@@ -85,16 +76,9 @@ export class EditComponent extends BaseListItemEdit<ConsultantInformation> imple
       });
   }
 
-  getItemStub = itemInner => {
-    if (!itemInner.id) {
-      return this.fieldsList;
-    } else {
-      return itemInner;
-    }
-  };
-
   createForm(item) {
-    const controlsConfig = formFieldsGenerator(this.getItemStub(item));
+    const controlsConfig = this.fieldsFactoryService.formFieldsGenerator(item);
+
     controlsConfig['consultantGroupUser'] = [
       _.result(this, 'item.consultantGroupUser.id', ''),
       [

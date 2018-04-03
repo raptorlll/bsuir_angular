@@ -9,6 +9,7 @@ import {ViewComponent} from './components/view/view.component';
 import {EditComponent} from './components/edit/edit.component';
 import {RoutingModule} from '../routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ConsultantFormHelperService} from "./services/consultant-form-helper.service";
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     EditComponent
   ],
   providers: [
-    ConsultantViewProviderService
+    ConsultantViewProviderService,
+    ConsultantFormHelperService
   ]
 })
 export class ConsultantModule {
