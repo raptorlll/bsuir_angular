@@ -10,6 +10,6 @@ export abstract class CrudViewProviderService<T extends GenericId> {
   abstract getEditItemComponent: () => any;
   abstract getViewItemComponent: () => any;
 
-
   abstract routeName: () => string;
+  isReadOnly = () => false;
 }

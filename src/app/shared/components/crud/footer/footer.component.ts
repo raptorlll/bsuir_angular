@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {Page} from '../../generators/crudPage';
-import {ActivatedRoute} from '@angular/router';
+import { Component, ContentChild, ContentChildren, OnInit, QueryList } from '@angular/core';
+import { Page } from '../../generators/crudPage';
+import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
-import {CrudViewProviderService} from '../../../services/crud-view-provider.service';
-import {GenericId} from '../../../models';
+import { CrudViewProviderService } from '../../../services/crud-view-provider.service';
+import { GenericId } from '../../../models';
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'crud-footer',
@@ -12,19 +13,25 @@ import {GenericId} from '../../../models';
       <container>
         <row>
           <column xs="6">
-            <button mat-button *ngIf="showCreate" [routerLink]="['/', routeName, 'create']">
-              Create
-            </button>
+            <div #ref>
+              <ng-content></ng-content>
+            </div>
+            <div *ngIf="ref.children.length === 0">
+              <button mat-button *ngIf="showCreate" [routerLink]="['/', routeName, 'create']">
+                Create
+              </button>
+            </div>
           </column>
         </row>
       </container>
     </footer>
   `,
-  styles: []
 })
 export class FooterComponent<T extends GenericId> implements OnInit {
   page: Page.Type = Page.Type.HOME;
   routeName: string;
+
+  // @ContentChild(any) tabs: QueryList<any>;
 
   constructor(private activatedRoute: ActivatedRoute,
               private crudViewProviderService: CrudViewProviderService<T>) {
@@ -32,9 +39,7 @@ export class FooterComponent<T extends GenericId> implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute
-      .firstChild
-      .data
+    (<Observable<any>>(_.result(this.activatedRoute.firstChild, 'data') || Observable.of(null)))
       .subscribe((a) => {
         this.page = _.result(a, 'type', Page.Type.HOME);
       });

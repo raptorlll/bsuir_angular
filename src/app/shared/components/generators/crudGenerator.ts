@@ -1,7 +1,7 @@
-import {Routes} from '@angular/router';
-import {ViewComponent} from '../crud/view/view.component';
-import {EditComponent} from '../crud/edit/edit.component';
-import {Page} from './crudPage';
+import { Routes } from '@angular/router';
+import { ViewComponent } from '../crud/view/view.component';
+import { EditComponent } from '../crud/edit/edit.component';
+import { Page } from './crudPage';
 
 export const crudRoutes = (resolver): Routes => {
   return [
@@ -9,31 +9,31 @@ export const crudRoutes = (resolver): Routes => {
       path: 'edit/:id',
       component: EditComponent,
       data: {
-        type: Page.Type.EDIT
+        type: Page.Type.EDIT,
       },
       resolve: {
-        item: resolver
-      }
+        item: resolver,
+      },
     },
     {
       path: 'create',
       component: EditComponent,
       data: {
-        type: Page.Type.CREATE
+        type: Page.Type.CREATE,
       },
       resolve: {
-        item: resolver
-      }
+        item: resolver,
+      },
     },
     {
       path: ':id',
       component: ViewComponent,
       data: {
-        type: Page.Type.VIEW
+        type: Page.Type.VIEW,
       },
       resolve: {
-        item: resolver
-      }
-    }
+        item: resolver,
+      },
+    },
   ];
 };

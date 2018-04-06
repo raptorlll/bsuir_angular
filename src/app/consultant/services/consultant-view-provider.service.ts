@@ -15,4 +15,6 @@ export class ConsultantViewProviderService extends CrudViewProviderService<Consu
   getEditItemComponent = () => EditComponent;
 
   getViewItemComponent = () => ViewComponent;
+
+  isReadOnly = () => false;
 }

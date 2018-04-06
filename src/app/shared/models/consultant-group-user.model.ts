@@ -1,5 +1,5 @@
-import {ConsultantGroup} from '../api/generated/model/consultantGroup';
-import {User} from '../api/generated/model/user';
+import { ConsultantGroup } from '../api/generated/model/consultantGroup';
+import { User } from '../api/generated';
 
 export class ConsultantGroupUser {
   consultantGroup?: ConsultantGroup;

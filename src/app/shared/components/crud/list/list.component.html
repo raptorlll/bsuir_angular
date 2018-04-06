@@ -8,7 +8,7 @@
         [style.paddingBottom]="'10px'"
         [style.height]="'auto'">
         <list-crud-item [item]="item"></list-crud-item>
-        <crud-list-item-buttons [item]="item"></crud-list-item-buttons>
+        <crud-list-item-buttons [item]="item" *ngIf="!isReadOnly"></crud-list-item-buttons>
       </mat-list-item>
       <mat-divider class="padding-small" *ngIf="items.length-1!==i"></mat-divider>
     </div>
